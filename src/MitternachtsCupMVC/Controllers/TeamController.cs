@@ -1,20 +1,21 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MitternachtsCupMVC.Data;
+using MitternachtsCupMVC.Interfaces;
 
 namespace MitternachtsCupMVC.Controllers;
 
 public class TeamController : Controller
 {
-    private readonly ApplicationDbContext _context;
+    private readonly ITeamRepository _teamRepository;
 
-    public TeamController(ApplicationDbContext context)
+    public TeamController(ITeamRepository teamRepository)
     {
-        _context = context;
+        _teamRepository = teamRepository;
     }
     public async Task<IActionResult> Index()
     {
-        var teams = await _context.Teams.ToListAsync();
+        var teams = await _teamRepository.GetAll();
         return View(teams);
     }
 }
