@@ -12,8 +12,6 @@ public class Spiel
     public Platten Platte { get; set; }
     public DateTime StartZeit { get; set; }
     public TimeSpan SpielDauer { get; set; }
-    [ForeignKey("Team")]
-    public int TeamId { get; set; }
     public Team TeamA { get; set; }
     public Team TeamB { get; set; }
 }
