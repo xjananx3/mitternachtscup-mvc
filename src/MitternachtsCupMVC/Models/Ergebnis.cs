@@ -12,4 +12,7 @@ public class Ergebnis
     [ForeignKey("Spiel")]
     public int SpielId { get; set; }
     public Spiel Spiel { get; set; }
+    [ForeignKey("Team")] 
+    public int TeamId { get; set; }
+    public Team GewinnerTeam { get; set; }
 }
