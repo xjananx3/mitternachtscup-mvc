@@ -22,17 +22,12 @@ public class SpielController : Controller
         return View(spiele);
     }
 
-    public async Task<IActionResult> Create(int teamAId, int teamBId)
+    public IActionResult Create()
     {
-        var teamA = await _teamRepository.GetByIdAsync(teamAId);
-        var teamB = await _teamRepository.GetByIdAsync(teamBId);
-
         var createSpielViewModel = new CreateSpielViewModel
         {
-            TeamA = teamA,
-            TeamB = teamB
+
         };
-        
         return View(createSpielViewModel);
     }
 
