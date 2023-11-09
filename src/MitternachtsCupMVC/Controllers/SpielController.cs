@@ -35,21 +35,21 @@ public class SpielController : Controller
     public async Task<IActionResult> Create(CreateSpielViewModel spielVm)
     {
         
-        if (ModelState.IsValid)
-        {
+        
             var spiel = new Spiel
             {
                 Name = spielVm.Name,
                 Platte = spielVm.Platte,
                 StartZeit = spielVm.StartZeit,
                 SpielDauer = spielVm.SpielDauer,
+                TeamAId = spielVm.TeamAId,
                 TeamA = spielVm.TeamA,
+                TeamBId = spielVm.TeamBId,
                 TeamB = spielVm.TeamB
             };
             _spielRepository.Add(spiel);
             return RedirectToAction("Index");
-        }
 
-        return View(spielVm);
+    
     }
 }
