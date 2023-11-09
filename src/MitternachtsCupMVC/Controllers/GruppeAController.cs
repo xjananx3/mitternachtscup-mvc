@@ -12,7 +12,7 @@ public class GruppeAController : Controller
     {
         _teamRepository = teamRepository;
     }
-    // GET
+    
     public async Task<IActionResult> Index()
     {
         var teams = await _teamRepository.GetAll();
