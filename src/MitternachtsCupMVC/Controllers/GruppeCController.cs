@@ -19,6 +19,7 @@ public class GruppeCController : Controller
             .Where(t => t.Name == "Larios 2"
                         || t.Name == "Schluchhalder"
                         || t.Name == "Bohnenklopferinas"
+                        || t.Name == "Dummy Team 2"
                         || t.Name == "Schmetterball"
                         || t.Name == "Musikverein Sasbachried"
                         || t.Name == "Gruschtle"

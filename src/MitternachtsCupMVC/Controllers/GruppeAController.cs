@@ -21,6 +21,7 @@ public class GruppeAController : Controller
             .Where(t => t.Name == "Bohnenkloper 1"
                         || t.Name == "Durschdlöscher"
                         || t.Name == "MaLongSom"
+                        || t.Name == "Test 123"
                         || t.Name == "Larios 1"
                         || t.Name == "Moorknechte Sasbachried"
                         || t.Name == "Rheingoldstraße"

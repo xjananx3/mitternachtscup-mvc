@@ -20,9 +20,11 @@ public class GruppeBController : Controller
             .Where(t => t.Name == "Bohnenkloper 2"
                         || t.Name == "RSkaliert"
                         || t.Name == "Team Havana"
+                        || t.Name == "Dummy Team 1"
                         || t.Name == "Rieder Piraten 1"
                         || t.Name == "Spritzer"
-                        || t.Name == "Team Dobex").ToList();
+                        || t.Name == "Team Dobex"
+                        || t.Name == "Space Team 1").ToList();
         
         return View(gruppeBteams);
     }

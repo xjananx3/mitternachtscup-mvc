@@ -19,9 +19,11 @@ public class GruppeDController : Controller
             .Where(t => t.Name == "Rieder Piraten 2"
                         || t.Name == "Maflotho"
                         || t.Name == "The Old Schmetterhänds"
+                        || t.Name == "Dummy Team 3"
                         || t.Name == "OlympAllstars"
                         || t.Name == "Kräuterhexen"
-                        || t.Name == "Geschwister Bauer").ToList();
+                        || t.Name == "Geschwister Bauer"
+                        || t.Name == "Space Team 2").ToList();
         
         return View(gruppeDteams);
     }
