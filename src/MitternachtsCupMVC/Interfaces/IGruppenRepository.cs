@@ -9,5 +9,7 @@ public interface IGruppenRepository
     Task<IEnumerable<Team>> GetGruppeB();
     Task<IEnumerable<Team>> GetGruppeC();
     Task<IEnumerable<Team>> GetGruppeD();
+    Task<IEnumerable<Team>> GetGruppeE();
+    Task<IEnumerable<Team>> GetGruppeF();
     
 }

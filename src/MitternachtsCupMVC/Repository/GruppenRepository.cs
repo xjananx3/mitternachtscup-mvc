@@ -21,9 +21,7 @@ public class GruppenRepository : IGruppenRepository
                         || t.Name == "MaLongSom"
                         || t.Name == "Test 123"
                         || t.Name == "Larios 1"
-                        || t.Name == "Moorknechte Sasbachried"
-                        || t.Name == "Rheingoldstraße"
-                        || t.Name == "Jungspritzer").ToListAsync();
+                        || t.Name == "Moorknechte Sasbachried").ToListAsync();
     }
 
     public async Task<IEnumerable<Team>> GetGruppeB()
@@ -31,12 +29,9 @@ public class GruppenRepository : IGruppenRepository
         return await _context.Teams
             .Where(t => t.Name == "Bohnenkloper 2"
                         || t.Name == "RSkaliert"
-                        || t.Name == "Team Havana"
-                        || t.Name == "Dummy Team 1"
-                        || t.Name == "Rieder Piraten 1"
                         || t.Name == "Spritzer"
-                        || t.Name == "Team Dobex"
-                        || t.Name == "Space Team 1").ToListAsync();
+                        || t.Name == "Dummy Team 1"
+                        || t.Name == "Rieder Piraten 1").ToListAsync();
     }
 
     public async Task<IEnumerable<Team>> GetGruppeC()
@@ -47,9 +42,7 @@ public class GruppenRepository : IGruppenRepository
                         || t.Name == "Bohnenklopferinas"
                         || t.Name == "Dummy Team 2"
                         || t.Name == "Schmetterball"
-                        || t.Name == "Musikverein Sasbachried"
-                        || t.Name == "Gruschtle"
-                        || t.Name == "SoulEater").ToListAsync();
+                        || t.Name == "Musikverein Sasbachried").ToListAsync();
     }
 
     public async Task<IEnumerable<Team>> GetGruppeD()
@@ -59,9 +52,26 @@ public class GruppenRepository : IGruppenRepository
                         || t.Name == "Maflotho"
                         || t.Name == "The Old Schmetterhänds"
                         || t.Name == "Dummy Team 3"
-                        || t.Name == "OlympAllstars"
+                        || t.Name == "OlympAllstars").ToListAsync();
+    }
+    
+    public async Task<IEnumerable<Team>> GetGruppeE()
+    {
+        return await _context.Teams
+            .Where(t => t.Name == "Geschwister Bauer"
+                        || t.Name == "Team Dobex"
+                        || t.Name == "Jungspritzer"
+                        || t.Name == "Space Team 2"
+                        || t.Name == "Gruschtle").ToListAsync();
+    }
+    
+    public async Task<IEnumerable<Team>> GetGruppeF()
+    {
+        return await _context.Teams
+            .Where(t => t.Name == "Rheingoldstraße"
                         || t.Name == "Kräuterhexen"
-                        || t.Name == "Geschwister Bauer"
-                        || t.Name == "Space Team 2").ToListAsync();
+                        || t.Name == "SoulEater"
+                        || t.Name == "Space Team 1"
+                        || t.Name == "Team Havana").ToListAsync();
     }
 }

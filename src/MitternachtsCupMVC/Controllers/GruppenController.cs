@@ -41,5 +41,19 @@ public class GruppenController : Controller
         return View(gruppeDteams);
     }
     
+    public async Task<IActionResult> GruppeE()
+    {
+        var gruppeEteams = await _gruppenRepository.GetGruppeE();
+        
+        return View(gruppeEteams);
+    }
+    
+    public async Task<IActionResult> GruppeF()
+    {
+        var gruppeFteams = await _gruppenRepository.GetGruppeF();
+        
+        return View(gruppeFteams);
+    }
+    
     
 }
