@@ -60,10 +60,13 @@ public class SpielController : Controller
 
     public IActionResult Create(int teamAId, int teamBId)
     {
+        
         var createSpielViewModel = new CreateSpielViewModel
         {
             TeamAId = teamAId,
-            TeamBId = teamBId
+            TeamBId = teamBId,
+            StartZeit = new DateTime(2023, 11, 25, 17, 0, 0),
+            SpielDauer = TimeSpan.FromMinutes(30)
         };
         return View(createSpielViewModel);
     }
