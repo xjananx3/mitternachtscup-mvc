@@ -1,25 +1,168 @@
-@model IEnumerable<Team>
+@model IndexGruppenViewModel
 
 @{
     
 }
 
-<h1>Gruppe A</h1>
+<h1>Alle Spiele in der Gruppenphase</h1>
 
+<h2>Gruppe A</h2>
 <table class="table table-bordered">
     <thead>
-        <tr>
-            <th>Team-Nummer</th>
-            <th>Name</th>
-        </tr>
+    <tr>
+        <th>Team-Nr</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Team-Nr</th>
+    </tr>
     </thead>
     <tbody>
-        @foreach(var item in Model)
-        {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Name</td>
-            </tr>
-        }
+    @foreach(var item in Model.GruppeASpiele)
+    {
+        <tr>
+            <td>@item.TeamA.Id</td>
+            <td>@item.TeamA.Name</td>
+            <td>@item.TeamB.Name</td>
+            <td>@item.TeamB.Id</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h2>Gruppe B</h2>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Team-Nr</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Team-Nr</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach(var item in Model.GruppeBSpiele)
+    {
+        <tr>
+            <td>@item.TeamA.Id</td>
+            <td>@item.TeamA.Name</td>
+            <td>@item.TeamB.Name</td>
+            <td>@item.TeamB.Id</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h2>Gruppe C</h2>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Team-Nr</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Team-Nr</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach(var item in Model.GruppeCSpiele)
+    {
+        <tr>
+            <td>@item.TeamA.Id</td>
+            <td>@item.TeamA.Name</td>
+            <td>@item.TeamB.Name</td>
+            <td>@item.TeamB.Id</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h2>Gruppe D</h2>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Team-Nr</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Team-Nr</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach(var item in Model.GruppeDSpiele)
+    {
+        <tr>
+            <td>@item.TeamA.Id</td>
+            <td>@item.TeamA.Name</td>
+            <td>@item.TeamB.Name</td>
+            <td>@item.TeamB.Id</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h2>Gruppe E</h2>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Team-Nr</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Team-Nr</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach(var item in Model.GruppeESpiele)
+    {
+        <tr>
+            <td>@item.TeamA.Id</td>
+            <td>@item.TeamA.Name</td>
+            <td>@item.TeamB.Name</td>
+            <td>@item.TeamB.Id</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h2>Gruppe F</h2>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Team-Nr</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Team-Nr</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach(var item in Model.GruppeFSpiele)
+    {
+        <tr>
+            <td>@item.TeamA.Id</td>
+            <td>@item.TeamA.Name</td>
+            <td>@item.TeamB.Name</td>
+            <td>@item.TeamB.Id</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h2>Gruppe G</h2>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Team-Nr</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Team-Nr</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach(var item in Model.GruppeGSpiele)
+    {
+        <tr>
+            <td>@item.TeamA.Id</td>
+            <td>@item.TeamA.Name</td>
+            <td>@item.TeamB.Name</td>
+            <td>@item.TeamB.Id</td>
+        </tr>
+    }
     </tbody>
 </table>
