@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ITeamRepository, TeamRepository>();
 builder.Services.AddScoped<ISpielRepository, SpielRepository>();
+builder.Services.AddScoped<IErgebnisRepository, ErgebnisRepository>();
 builder.Services.AddScoped<IGruppenRepository, GruppenRepository>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
