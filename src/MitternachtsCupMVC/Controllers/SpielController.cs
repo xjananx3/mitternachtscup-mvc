@@ -58,11 +58,12 @@ public class SpielController : Controller
         return View(spieleListe);
     }
 
-    public IActionResult Create()
+    public IActionResult Create(int teamAId, int teamBId)
     {
         var createSpielViewModel = new CreateSpielViewModel
         {
-
+            TeamAId = teamAId,
+            TeamBId = teamBId
         };
         return View(createSpielViewModel);
     }
