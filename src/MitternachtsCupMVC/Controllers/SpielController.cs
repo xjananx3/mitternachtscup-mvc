@@ -19,7 +19,43 @@ public class SpielController : Controller
     public async Task<IActionResult> Index()
     {
         var spiele = await _spielRepository.GetAll();
-        return View(spiele);
+        var teams = await _teamRepository.GetAll();
+
+        var spieleListe = new List<SpielViewModel>();
+        string teamAName = string.Empty;
+        string teamBName = string.Empty;
+
+        foreach (var spiel in spiele)
+        {
+            foreach (var team in teams)
+            {
+                if (spiel.TeamAId == team.Id)
+                {
+                    teamAName = team.Name;
+                }
+
+                if (spiel.TeamBId == team.Id)
+                {
+                    teamBName = team.Name;
+                }
+                
+            }
+            var spieleViewModel = new SpielViewModel
+            {
+                Id = spiel.Id,
+                Name = spiel.Name,
+                Platte = spiel.Platte,
+                StartZeit = spiel.StartZeit,
+                SpielDauer = spiel.SpielDauer,
+                TeamAId = spiel.TeamAId,
+                TeamAName = teamAName,
+                TeamBName = teamBName,
+                TeamBId = spiel.TeamBId
+            };
+            spieleListe.Add(spieleViewModel);
+        }
+        
+        return View(spieleListe);
     }
 
     public IActionResult Create()
@@ -35,7 +71,6 @@ public class SpielController : Controller
     public async Task<IActionResult> Create(CreateSpielViewModel spielVm)
     {
         
-        
             var spiel = new Spiel
             {
                 Name = spielVm.Name,
@@ -49,7 +84,23 @@ public class SpielController : Controller
             };
             _spielRepository.Add(spiel);
             return RedirectToAction("Index");
-
+            
+    }
     
+    public async Task<IActionResult> Delete(int id)
+    {
+        var spielDetails = await _spielRepository.GetByIdAsync(id);
+        if (spielDetails == null) return View("Error");
+        return View(spielDetails);
+    }
+    
+    [HttpPost, ActionName("Delete")]
+    public async Task<IActionResult> DeleteSpiel(int id)
+    {
+        var spielDetails = await _spielRepository.GetByIdAsync(id);
+        if (spielDetails == null) return View("Error");
+
+        _spielRepository.Delete(spielDetails);
+        return RedirectToAction("Index");
     }
 }
