@@ -90,6 +90,44 @@ public class SpielController : Controller
             return RedirectToAction("Index");
             
     }
+
+    public async Task<IActionResult> Edit(int id)
+    {
+        var spiel = await _spielRepository.GetByIdAsync(id);
+        if (spiel == null) return View("Error");
+        var spielVm = new EditSpielViewModel()
+        {
+            Name = spiel.Name,
+            Platte = spiel.Platte,
+            StartZeit = spiel.StartZeit,
+            SpielDauer = spiel.SpielDauer,
+            TeamAId = spiel.TeamAId,
+            TeamA = spiel.TeamA,
+            TeamBId = spiel.TeamBId,
+            TeamB = spiel.TeamB
+        };
+        return View(spielVm);
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> Edit(int id, EditSpielViewModel spielVm)
+    {
+        var spiel = new Spiel
+        {
+            Id = id,
+            Name = spielVm.Name,
+            Platte = spielVm.Platte,
+            StartZeit = spielVm.StartZeit,
+            SpielDauer = spielVm.SpielDauer,
+            TeamAId = spielVm.TeamAId,
+            TeamA = spielVm.TeamA,
+            TeamBId = spielVm.TeamBId,
+            TeamB = spielVm.TeamB
+        };
+        _spielRepository.Update(spiel);
+
+        return RedirectToAction("Index");
+    }
     
     public async Task<IActionResult> Delete(int id)
     {
