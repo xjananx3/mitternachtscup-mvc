@@ -12,48 +12,119 @@ public class GruppenController : Controller
     {
         _gruppenRepository = gruppenRepository;
     }
-    
+
+    public async Task<IActionResult> Index()
+    {
+        var gruppeA = await _gruppenRepository.ErstelleSpieleGruppeA();
+        var gruppeB = await _gruppenRepository.ErstelleSpieleGruppeB();
+        var gruppeC = await _gruppenRepository.ErstelleSpieleGruppeC();
+        var gruppeD = await _gruppenRepository.ErstelleSpieleGruppeD();
+        var gruppeE = await _gruppenRepository.ErstelleSpieleGruppeE();
+        var gruppeF = await _gruppenRepository.ErstelleSpieleGruppeF();
+        var gruppeG = await _gruppenRepository.ErstelleSpieleGruppeG();
+
+        var gruppenVm = new IndexGruppenViewModel()
+        {
+            GruppeASpiele = gruppeA,
+            GruppeBSpiele = gruppeB,
+            GruppeCSpiele = gruppeC,
+            GruppeDSpiele = gruppeD,
+            GruppeESpiele = gruppeE,
+            GruppeFSpiele = gruppeF,
+            GruppeGSpiele = gruppeG
+        };
+
+        return View(gruppenVm);
+    }
     public async Task<IActionResult> GruppeA()
     {
         var gruppeAteams = await _gruppenRepository.GetGruppeA();
-        
-        return View(gruppeAteams);
+        var gruppenSpiele = await _gruppenRepository.ErstelleSpieleGruppeA();
+
+        var gruppenVm = new GruppenViewModel()
+        {
+            Teams = gruppeAteams,
+            GruppenSpiele = gruppenSpiele
+        };
+        return View(gruppenVm);
     }
     
     public async Task<IActionResult> GruppeB()
     {
         var gruppeBteams = await _gruppenRepository.GetGruppeB();
-        
-        return View(gruppeBteams);
+        var gruppenSpiele = await _gruppenRepository.ErstelleSpieleGruppeB();
+
+        var gruppenVm = new GruppenViewModel()
+        {
+            Teams = gruppeBteams,
+            GruppenSpiele = gruppenSpiele
+        };
+        return View(gruppenVm);
     }
     
     public async Task<IActionResult> GruppeC()
     {
         var gruppeCteams = await _gruppenRepository.GetGruppeC();
-        
-        return View(gruppeCteams);
+        var gruppenSpiele = await _gruppenRepository.ErstelleSpieleGruppeC();
+
+        var gruppenVm = new GruppenViewModel()
+        {
+            Teams = gruppeCteams,
+            GruppenSpiele = gruppenSpiele
+        };
+        return View(gruppenVm);
     }
     
     public async Task<IActionResult> GruppeD()
     {
         var gruppeDteams = await _gruppenRepository.GetGruppeD();
-        
-        return View(gruppeDteams);
+        var gruppenSpiele = await _gruppenRepository.ErstelleSpieleGruppeD();
+
+        var gruppenVm = new GruppenViewModel()
+        {
+            Teams = gruppeDteams,
+            GruppenSpiele = gruppenSpiele
+        };
+        return View(gruppenVm);
     }
     
     public async Task<IActionResult> GruppeE()
     {
         var gruppeEteams = await _gruppenRepository.GetGruppeE();
-        
-        return View(gruppeEteams);
+        var gruppenSpiele = await _gruppenRepository.ErstelleSpieleGruppeE();
+
+        var gruppenVm = new GruppenViewModel()
+        {
+            Teams = gruppeEteams,
+            GruppenSpiele = gruppenSpiele
+        };
+        return View(gruppenVm);
     }
     
     public async Task<IActionResult> GruppeF()
     {
         var gruppeFteams = await _gruppenRepository.GetGruppeF();
-        
-        return View(gruppeFteams);
+        var gruppenSpiele = await _gruppenRepository.ErstelleSpieleGruppeF();
+
+        var gruppenVm = new GruppenViewModel()
+        {
+            Teams = gruppeFteams,
+            GruppenSpiele = gruppenSpiele
+        };
+        return View(gruppenVm);
     }
     
+    public async Task<IActionResult> GruppeG()
+    {
+        var gruppeGteams = await _gruppenRepository.GetGruppeG();
+        var gruppenSpiele = await _gruppenRepository.ErstelleSpieleGruppeG();
+
+        var gruppenVm = new GruppenViewModel()
+        {
+            Teams = gruppeGteams,
+            GruppenSpiele = gruppenSpiele
+        };
+        return View(gruppenVm);
+    }
     
 }

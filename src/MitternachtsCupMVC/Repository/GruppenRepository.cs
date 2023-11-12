@@ -13,25 +13,44 @@ public class GruppenRepository : IGruppenRepository
     {
         _context = context;
     }
+    
+
     public async Task<IEnumerable<Team>> GetGruppeA()
     {
         return await _context.Teams
-            .Where(t => t.Name == "Bohnenkloper 1"
+            .Where(t => t.Name == "Bohnenklopfer 1"
                         || t.Name == "Durschdlöscher"
                         || t.Name == "MaLongSom"
-                        || t.Name == "Test 123"
-                        || t.Name == "Larios 1"
-                        || t.Name == "Moorknechte Sasbachried").ToListAsync();
+                        || t.Name == "Larios 1").ToListAsync();
+    }
+    
+    public async Task<ICollection<GruppenSpiel>> ErstelleSpieleGruppeA()
+    {
+        var gruppeAteams = await GetGruppeA();
+        var gruppeA = gruppeAteams.ToList();
+
+        var alleSpiele = GeneriereGruppenSpiele(gruppeA);
+
+        return alleSpiele;
     }
 
     public async Task<IEnumerable<Team>> GetGruppeB()
     {
         return await _context.Teams
-            .Where(t => t.Name == "Bohnenkloper 2"
+            .Where(t => t.Name == "Bohnenklopfer 2"
                         || t.Name == "RSkaliert"
                         || t.Name == "Spritzer"
-                        || t.Name == "Dummy Team 1"
                         || t.Name == "Rieder Piraten 1").ToListAsync();
+    }
+    
+    public async Task<ICollection<GruppenSpiel>> ErstelleSpieleGruppeB()
+    {
+        var gruppeBteams = await GetGruppeB();
+        var gruppeB = gruppeBteams.ToList();
+
+        var alleSpiele = GeneriereGruppenSpiele(gruppeB);
+
+        return alleSpiele;
     }
 
     public async Task<IEnumerable<Team>> GetGruppeC()
@@ -39,10 +58,18 @@ public class GruppenRepository : IGruppenRepository
         return await _context.Teams
             .Where(t => t.Name == "Larios 2"
                         || t.Name == "Schluchhalder"
-                        || t.Name == "Bohnenklopferinas"
-                        || t.Name == "Dummy Team 2"
                         || t.Name == "Schmetterball"
                         || t.Name == "Musikverein Sasbachried").ToListAsync();
+    }
+    
+    public async Task<ICollection<GruppenSpiel>> ErstelleSpieleGruppeC()
+    {
+        var gruppeCteams = await GetGruppeC();
+        var gruppeC = gruppeCteams.ToList();
+
+        var alleSpiele = GeneriereGruppenSpiele(gruppeC);
+
+        return alleSpiele;
     }
 
     public async Task<IEnumerable<Team>> GetGruppeD()
@@ -51,8 +78,17 @@ public class GruppenRepository : IGruppenRepository
             .Where(t => t.Name == "Rieder Piraten 2"
                         || t.Name == "Maflotho"
                         || t.Name == "The Old Schmetterhänds"
-                        || t.Name == "Dummy Team 3"
                         || t.Name == "OlympAllstars").ToListAsync();
+    }
+    
+    public async Task<ICollection<GruppenSpiel>> ErstelleSpieleGruppeD()
+    {
+        var gruppeDteams = await GetGruppeD();
+        var gruppeD = gruppeDteams.ToList();
+
+        var alleSpiele = GeneriereGruppenSpiele(gruppeD);
+
+        return alleSpiele;
     }
     
     public async Task<IEnumerable<Team>> GetGruppeE()
@@ -61,8 +97,17 @@ public class GruppenRepository : IGruppenRepository
             .Where(t => t.Name == "Geschwister Bauer"
                         || t.Name == "Team Dobex"
                         || t.Name == "Jungspritzer"
-                        || t.Name == "Space Team 2"
                         || t.Name == "Gruschtle").ToListAsync();
+    }
+    
+    public async Task<ICollection<GruppenSpiel>> ErstelleSpieleGruppeE()
+    {
+        var gruppeEteams= await GetGruppeE();
+        var gruppeE = gruppeEteams.ToList();
+
+        var alleSpiele = GeneriereGruppenSpiele(gruppeE);
+
+        return alleSpiele;
     }
     
     public async Task<IEnumerable<Team>> GetGruppeF()
@@ -71,7 +116,50 @@ public class GruppenRepository : IGruppenRepository
             .Where(t => t.Name == "Rheingoldstraße"
                         || t.Name == "Kräuterhexen"
                         || t.Name == "SoulEater"
-                        || t.Name == "Space Team 1"
                         || t.Name == "Team Havana").ToListAsync();
+    }
+    
+    public async Task<ICollection<GruppenSpiel>> ErstelleSpieleGruppeF()
+    {
+        var gruppeFteams = await GetGruppeF();
+        var gruppeF = gruppeFteams.ToList();
+
+        var alleSpiele = GeneriereGruppenSpiele(gruppeF);
+
+        return alleSpiele;
+    }
+
+    public async Task<IEnumerable<Team>> GetGruppeG()
+    {
+        return await _context.Teams
+            .Where(t => t.Name == "Moorknechte Sasbachried"
+                        || t.Name == "Bohnenklopferinas"
+                        || t.Name == "Kräuter Seitling"
+                        || t.Name == "Freies Team 1").ToListAsync();
+    }
+    
+    public async Task<ICollection<GruppenSpiel>> ErstelleSpieleGruppeG()
+    {
+        var gruppeGteams = await GetGruppeG();
+        var gruppeG = gruppeGteams.ToList();
+
+        var alleSpiele = GeneriereGruppenSpiele(gruppeG);
+
+        return alleSpiele;
+    }
+
+    private List<GruppenSpiel> GeneriereGruppenSpiele(List<Team> teams)
+    {
+        List<GruppenSpiel> gruppenSpiele = new List<GruppenSpiel>();
+        
+        for (int i = 0; i < teams.Count - 1 ; i++)
+        {
+            for (int j = i + 1; j < teams.Count(); j++)
+            {
+                gruppenSpiele.Add(new GruppenSpiel() { TeamA = teams[i], TeamB = teams[j] });
+            }
+        }
+
+        return gruppenSpiele;
     }
 }
