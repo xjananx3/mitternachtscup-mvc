@@ -7,20 +7,14 @@
 <table class="table table-bordered">
     <thead>
     <tr>
-        <th>Spiel-Nummer</th>
-        <th>Platte</th>
-        <th>Startzeit</th>
         <th>Team A</th>
         <th>Team B</th>
     </tr>
     </thead>
     <tbody>
-    @foreach(var item in Model.Spiele)
+    @foreach(var item in Model.GruppenSpiele)
     {
         <tr>
-            <td>@item.Id</td>
-            <td>@item.Platte</td>
-            <th>@item.StartZeit</th>
             <th>@item.TeamA.Name</th>
             <th>@item.TeamB.Name</th>
         </tr>
