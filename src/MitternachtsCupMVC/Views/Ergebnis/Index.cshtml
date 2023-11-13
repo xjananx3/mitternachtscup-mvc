@@ -1,5 +1,36 @@
-@model IEnumerable<Ergebnis>
+@model List<ErgebnisViewModel>
 
 @{
 }
 
+
+<h1>Alle eingetragenen Ergebnisse</h1>
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Punkte</th>
+        <th>Punkte</th>
+        <th>Team B</th>>
+        <th>Gewinner</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.SpielName</td>
+            <th>@item.TeamAName</th>
+            <th>@item.PunkteTeamA</th>
+            <th>@item.PunkteTeamB</th>
+            <th>@item.TeamBName</th>
+            <th>@item.GewinnerTeamName</th>
+        </tr>
+    }
+    </tbody>
+</table>
