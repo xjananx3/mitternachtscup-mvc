@@ -15,12 +15,27 @@ public class ErgebnisRepository : IErgebnisRepository
     }
     public async Task<IEnumerable<Ergebnis>> GetAll()
     {
-        return await _context.Ergebnisse.ToListAsync();
+        return await _context.Ergebnisse
+            .Include(s => s.Spiel)
+            .Include(t => t.GewinnerTeam)
+            .ToListAsync();
+    }
+
+    public async Task<string> GetTeamNameById(int id)
+    {
+        var team = await _context.Teams.FirstOrDefaultAsync(s => s.Id == id);
+
+        var spielname = team.Name;
+
+        return spielname;
     }
 
     public async Task<Ergebnis> GetByIdAsync(int id)
     {
-        return await _context.Ergebnisse.FirstOrDefaultAsync(e => e.Id == id);
+        return await _context.Ergebnisse
+            .Include(i => i.Spiel)
+            .Include(t => t.GewinnerTeam)
+            .FirstOrDefaultAsync(e => e.Id == id);
     }
 
     public bool Add(Ergebnis ergebnis)
