@@ -20,49 +20,29 @@ public class TurnierplanRepository : ITurnierplanRepository
         var spiele = await _context.Spiele.ToListAsync();
         var ergebnisse = await _context.Ergebnisse.ToListAsync();
         var teams = await _context.Teams.ToListAsync();
-        var gruppenSpielListe = new List<GruppenSpielTurnierPlan>();
-        string teamAName = String.Empty;
-        string teamBName = String.Empty;
-        string gewinnerName = String.Empty;
-        string ergebnisString = String.Empty;
-
-        foreach (var spiel in spiele)
-        {
-            foreach (var ergebnis in ergebnisse)
+        
+        var gruppenSpielListe = spiele
+            .Join(ergebnisse,
+                s => s.Id,
+                e => e.SpielId,
+                (spiel, ergebnis) => new { Spiel = spiel, Ergebnis = ergebnis })
+            .Select(item =>
             {
-                if (spiel.Id == ergebnis.SpielId)
+                var teamA = teams.FirstOrDefault(t => t.Id == item.Spiel.TeamAId);
+                var teamB = teams.FirstOrDefault(t => t.Id == item.Spiel.TeamBId);
+
+                return new GruppenSpielTurnierPlan()
                 {
-                    var teamA = teams.FirstOrDefault(t => t.Id == spiel.TeamAId);
-                    var teamB = teams.FirstOrDefault(t => t.Id == spiel.TeamBId);
-                    teamAName = teamA.Name;
-                    teamBName = teamB.Name;
-                    ergebnisString = ErgebnisAufbereiten(ergebnis.PunkteTeamA, ergebnis.PunkteTeamB);
-
-                    if (ergebnis.PunkteTeamA > ergebnis.PunkteTeamB)
-                    {
-                        gewinnerName = teamAName;
-                    }
-                    else
-                    {
-                        gewinnerName = teamBName;
-                    }
-                    
-                    var gruppenSpiel = new GruppenSpielTurnierPlan()
-                    {
-                        Platte = spiel.Platte.ToString(),
-                        SpielName = spiel.Name,
-                        TeamAName = teamAName,
-                        TeamBName = teamBName,
-                        Ergebnis = ergebnisString,
-                        GewinnerName = gewinnerName
-                    };
-                    gruppenSpielListe.Add(gruppenSpiel);
-                }
-            }
-        }
-
+                    Platte = item.Spiel.Platte.ToString(),
+                    SpielName = item.Spiel.Name,
+                    TeamAName = teamA?.Name,
+                    TeamBName = teamB?.Name,
+                    Ergebnis = ErgebnisAufbereiten(item.Ergebnis.PunkteTeamA, item.Ergebnis.PunkteTeamB),
+                    GewinnerName = item.Ergebnis.PunkteTeamA > item.Ergebnis.PunkteTeamB ? teamA?.Name : teamB?.Name
+                };
+            }).ToList();
+        
         return gruppenSpielListe;
-
     }
 
     public async Task<ICollection<GruppenSpielTurnierPlan>> HoleSpieleOhneErgebnis()
@@ -76,9 +56,12 @@ public class TurnierplanRepository : ITurnierplanRepository
             .Select(spiel => new GruppenSpielTurnierPlan()
             {
                 Platte = spiel.Platte.ToString(),
+                SpielId = spiel.Id,
                 SpielName = spiel.Name,
                 StartZeit = spiel.StartZeit.ToString(),
+                TeamAId = teams.FirstOrDefault(t => t.Id == spiel.TeamAId)?.Id,
                 TeamAName = teams.FirstOrDefault(t => t.Id == spiel.TeamAId)?.Name,
+                TeamBId = teams.FirstOrDefault(t => t.Id == spiel.TeamBId)?.Id,
                 TeamBName = teams.FirstOrDefault(t => t.Id == spiel.TeamBId)?.Name
             }).ToList();
 
