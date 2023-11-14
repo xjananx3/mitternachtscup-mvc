@@ -1,13 +1,33 @@
+@using MitternachtsCupMVC.Data.Enum
 @model Spiel
 
 @{
 }
 
 <form method="post" asp-action="Delete">
+    <input type="hidden" asp-for="TeamAId"/>
+    <input type="hidden" asp-for="TeamBId"/>
     <div class="form-group">
-        <label asp-for="Name">Name des Teams</label>
+        <label asp-for="Name">Name des spiels</label>
         <input asp-for="Name" class="form-control" placeholder="Name">
         <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Platte">Platte</label>
+        <select asp-for="Platte" asp-items="@Html.GetEnumSelectList<Platten>()" class="form-control">
+            <option selected="selected" value="">--Select--</option>
+        </select>
+        <span asp-validation-for="Platte" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="StartZeit">Startzeit</label>
+        <input asp-for="StartZeit" class="form-control" placeholder="Startzeit">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="SpielDauer">Spieldauer</label>
+        <input asp-for="SpielDauer" class="form-control" placeholder="Spieldauer">
+        <span asp-validation-for="SpielDauer" class="text-danger"></span>
     </div>
 </form>
 <div class="form-group">
