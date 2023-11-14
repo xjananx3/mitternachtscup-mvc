@@ -4,6 +4,8 @@
 
 <h1>Turnierplan</h1>
 
+<h2>Vergangene Spiele</h2>
+
 <table class="table table-bordered">
     <thead>
     <tr>
@@ -16,16 +18,42 @@
     </tr>
     </thead>
     <tbody>
-    @foreach(var item in Model.GruppenSpiele)
+    @foreach(var item in Model.GruppenSpieleMitErgebnis)
     {
         <tr>
-            <th>@item.Platte</th>
-            <th>@item.SpielName</th>
-            <th>@item.TeamAName</th>
-            <th>@item.TeamBName</th>
-            <th>@item.Ergebnis</th>
-            <th>@item.GewinnerName</th>
+            <td>@item.Platte</td>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.Ergebnis</td>
+            <td>@item.GewinnerName</td>
         </tr>
     }
     </tbody>
 </table>
+
+<h2>Kommende Spiele</h2>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Platte</th>
+        <th>SpielName</th>
+        <th>StarZeit</th>
+        <th>Team A</th>
+        <th>Team B</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach(var item in Model.GruppenSpieleOhneErgebnis)
+    {
+        <tr>
+            <td>@item.Platte</td>
+            <td>@item.SpielName</td>
+            <td>@item.StartZeit</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
