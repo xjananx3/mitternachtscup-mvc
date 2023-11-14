@@ -7,16 +7,24 @@
 <table class="table table-bordered">
     <thead>
     <tr>
+        <th>Platte</th>
+        <th>SpielName</th>
         <th>Team A</th>
         <th>Team B</th>
+        <th>Ergebnis</th>
+        <th>Gewinner</th>
     </tr>
     </thead>
     <tbody>
     @foreach(var item in Model.GruppenSpiele)
     {
         <tr>
-            <th>@item.TeamA.Name</th>
-            <th>@item.TeamB.Name</th>
+            <th>@item.Platte</th>
+            <th>@item.SpielName</th>
+            <th>@item.TeamAName</th>
+            <th>@item.TeamBName</th>
+            <th>@item.Ergebnis</th>
+            <th>@item.GewinnerName</th>
         </tr>
     }
     </tbody>

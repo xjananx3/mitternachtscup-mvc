@@ -13,7 +13,12 @@ public class TurnierplanController : Controller
     }
     public async Task<IActionResult> Index()
     {
-        
-        return View();
+        var spieleMitErgebnis = await _turnierplanRepository.HoleSpieleMitErgebnis();
+
+        var turnierplanVm = new TurnierplanViewModel()
+        {
+            GruppenSpiele = spieleMitErgebnis
+        };
+        return View(turnierplanVm);
     }
 }
