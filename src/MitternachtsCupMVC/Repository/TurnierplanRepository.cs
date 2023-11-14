@@ -46,25 +46,45 @@ public class TurnierplanRepository : ITurnierplanRepository
                     {
                         gewinnerName = teamBName;
                     }
+                    
+                    var gruppenSpiel = new GruppenSpielTurnierPlan()
+                    {
+                        Platte = spiel.Platte.ToString(),
+                        SpielName = spiel.Name,
+                        TeamAName = teamAName,
+                        TeamBName = teamBName,
+                        Ergebnis = ergebnisString,
+                        GewinnerName = gewinnerName
+                    };
+                    gruppenSpielListe.Add(gruppenSpiel);
                 }
             }
-            
-            var gruppenSpiel = new GruppenSpielTurnierPlan()
-            {
-                Platte = spiel.Platte.ToString(),
-                SpielName = spiel.Name,
-                TeamAName = teamAName,
-                TeamBName = teamBName,
-                Ergebnis = ergebnisString,
-                GewinnerName = gewinnerName
-            };
-            gruppenSpielListe.Add(gruppenSpiel);
         }
 
         return gruppenSpielListe;
 
     }
-    
+
+    public async Task<ICollection<GruppenSpielTurnierPlan>> HoleSpieleOhneErgebnis()
+    {
+        var spiele = await _context.Spiele.ToListAsync();
+        var ergebnisse = await _context.Ergebnisse.ToListAsync();
+        var teams = await _context.Teams.ToListAsync();
+
+        var gruppenspieleOhneErgebnis = spiele
+            .Where(s => !ergebnisse.Any(e => e.SpielId == s.Id))
+            .Select(spiel => new GruppenSpielTurnierPlan()
+            {
+                Platte = spiel.Platte.ToString(),
+                SpielName = spiel.Name,
+                StartZeit = spiel.StartZeit.ToString(),
+                TeamAName = teams.FirstOrDefault(t => t.Id == spiel.TeamAId)?.Name,
+                TeamBName = teams.FirstOrDefault(t => t.Id == spiel.TeamBId)?.Name
+            }).ToList();
+
+        return gruppenspieleOhneErgebnis;
+    }
+
     private string ErgebnisAufbereiten(int punkteA, int punkteB)
     {
         return $"{punkteA} : {punkteB}";

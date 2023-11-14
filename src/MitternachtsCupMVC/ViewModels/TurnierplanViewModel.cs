@@ -5,6 +5,6 @@ namespace MitternachtsCupMVC;
 
 public class TurnierplanViewModel
 {
-    public ICollection<GruppenSpielTurnierPlan> GruppenSpiele { get; set; }
-    
+    public ICollection<GruppenSpielTurnierPlan> GruppenSpieleMitErgebnis { get; set; }
+    public ICollection<GruppenSpielTurnierPlan> GruppenSpieleOhneErgebnis { get; set; }
 }

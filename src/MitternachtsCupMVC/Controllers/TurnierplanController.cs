@@ -14,10 +14,12 @@ public class TurnierplanController : Controller
     public async Task<IActionResult> Index()
     {
         var spieleMitErgebnis = await _turnierplanRepository.HoleSpieleMitErgebnis();
+        var spielOhneErgebnis = await _turnierplanRepository.HoleSpieleOhneErgebnis();
 
         var turnierplanVm = new TurnierplanViewModel()
         {
-            GruppenSpiele = spieleMitErgebnis
+            GruppenSpieleMitErgebnis = spieleMitErgebnis,
+            GruppenSpieleOhneErgebnis = spielOhneErgebnis
         };
         return View(turnierplanVm);
     }
