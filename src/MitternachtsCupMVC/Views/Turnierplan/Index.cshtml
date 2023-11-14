@@ -41,6 +41,9 @@
         <th>StarZeit</th>
         <th>Team A</th>
         <th>Team B</th>
+        <th>Punkte Team A</th>
+        <th>Punkte Team A</th>
+        <th>POST</th>
     </tr>
     </thead>
     <tbody>
@@ -52,8 +55,27 @@
             <td>@item.StartZeit</td>
             <td>@item.TeamAName</td>
             <td>@item.TeamBName</td>
+            <td> 
+                <input type="number" id="1" name="PunkteTeamA" value="0" min="0" max="3"/>
+            </td>
+            <td>
+                <input type="number" id="2" name="PunkteTeamB" value="0" min="0" max="3" />
+            </td>
+            <td>
+                <a onclick="postErgebnis('@item.SpielId', '@item.TeamAId', '@item.TeamBId')" class="btn btn-sm btn-outline-secondary">Post</a>
+            </td>
         </tr>
     }
     </tbody>
 </table>
 
+<script>
+    function postErgebnis(spielId, teamAId, teamBId) {
+        var punkteTeamA = document.getElementById('1').value;
+        var punkteTeamB = document.getElementById('2').value;
+        
+        var gewinnerTeamId = punkteTeamA > punkteTeamB ? teamAId : teamBId;
+
+        window.location.href = '/Ergebnis/CreateAusTurnierplan?spielId=' + spielId + '&punkteTeamA=' + punkteTeamA + '&punkteTeamB=' + punkteTeamB + '&gewinnerTeamId=' + gewinnerTeamId;
+    }
+</script>
