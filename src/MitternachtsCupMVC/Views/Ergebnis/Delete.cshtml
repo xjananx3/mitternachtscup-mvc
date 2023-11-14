@@ -1,0 +1,25 @@
+@model Ergebnis
+
+@{
+}
+
+<form method="post" asp-action="Delete">
+    <input type="hidden" asp-for="SpielId"/>
+    <input type="hidden" asp-for="TeamId"/>
+    <div class="form-group">
+        <label asp-for="PunkteTeamA">Punkte Team A</label>
+        <input asp-for="PunkteTeamA" class="form-control" placeholder="PunkteTeamA">
+        <span asp-validation-for="PunkteTeamA" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PunkteTeamB">Punkte Team B</label>
+        <input asp-for="PunkteTeamB" class="form-control" placeholder="PunkteTeamB">
+        <span asp-validation-for="PunkteTeamB" class="text-danger"></span>
+    </div>
+</form>
+<div class="form-group">
+    <form action="Delete" method="post">
+        <input type="hidden" asp-for="Id"/>
+        <input type="submit" value="Confirm" class="btn btn-danger float-right mt-3">
+    </form>
+</div>
