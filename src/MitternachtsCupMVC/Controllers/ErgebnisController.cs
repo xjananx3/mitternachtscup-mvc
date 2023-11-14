@@ -87,6 +87,19 @@ public class ErgebnisController : Controller
         return View(createErgebnisViewModel);
     }
 
+    public IActionResult CreateAusTurnierplan(int spielId, int punkteTeamA, int punkteTeamB, int gewinnerTeamId)
+    {
+        var createErgebnisViewMode = new CreateErgebnisViewModel()
+        {
+            SpielId = spielId,
+            PunkteTeamA = punkteTeamA,
+            PunkteTeamB = punkteTeamB,
+            TeamId = gewinnerTeamId
+        };
+
+        return View(createErgebnisViewMode);
+    }
+
     [HttpPost]
     public async Task<IActionResult> Create(CreateErgebnisViewModel ergebnisVm)
     {
@@ -101,6 +114,23 @@ public class ErgebnisController : Controller
         };
 
         _ergebnisRepository.Add(ergebnis);
-        return View(ergebnisVm);
+        return RedirectToAction("Index", "Turnierplan");
+    }
+
+    public async Task<IActionResult> Delete(int id)
+    {
+        var ergebnisDetails = await _ergebnisRepository.GetByIdAsync(id);
+        if (ergebnisDetails == null) return View("Error");
+        return View(ergebnisDetails);
+    }
+    
+    [HttpPost, ActionName("Delete")]
+    public async Task<IActionResult> DeleteErgebnis(int id)
+    {
+        var ergebnis = await _ergebnisRepository.GetByIdAsync(id);
+        if (ergebnis == null) return View("Error");
+
+        _ergebnisRepository.Delete(ergebnis);
+        return RedirectToAction("Index");
     }
 }
