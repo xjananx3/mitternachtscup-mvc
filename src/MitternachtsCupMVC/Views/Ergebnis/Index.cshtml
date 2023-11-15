@@ -13,11 +13,11 @@
         <th>ID</th>
         <th>Spiel-Name</th>
         <th>Team A</th>
-        <th>Punkte</th>
-        <th>Punkte</th>
-        <th>Team B</th>>
-        <th>Gewinner</th>
+        <th>Team B</th>
+        <th>Punkte A</th>
+        <th>Punkte B</th>
         <th>Delete</th>
+        <th>Gewinner</th>
     </tr>
     </thead>
     <tbody>
@@ -27,14 +27,14 @@
             <td>@item.Id</td>
             <td>@item.SpielName</td>
             <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
             <td>@item.PunkteTeamA</td>
             <td>@item.PunkteTeamB</td>
-            <td>@item.TeamBName</td>
-            <td>@item.GewinnerTeamName</td>
             <td>
                 <a asp-controller="Ergebnis" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Löschen</a>
                 <a asp-controller="Ergebnis" asp-action="" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Bearbeiten</a>
             </td>
+            <td>@item.GewinnerTeamName</td>
         </tr>
     }
     </tbody>
