@@ -24,6 +24,63 @@
     </tbody>
 </table>
 
+
+<h2>Kommende Spiele</h2>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Startzeit</th>
+        <th>Platte</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.KommendeGruppeASpiele)
+    {
+        <tr>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.StartZeit</td>
+            <td>@item.Platte</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+<h2>Bereits gespielt</h2>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Platte</th>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Ergebnis</th>
+        <th>Gewinner</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.VergangeneGruppeASpiele)
+    {
+        <tr>
+            <td>@item.Platte</td>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.Ergebnis</td>
+            <td>@item.GewinnerName</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+
 <h2>Gruppe B</h2>
 
 <table class="table table-bordered">
@@ -44,6 +101,61 @@
     </tbody>
 </table>
 
+<h2>Kommende Spiele</h2>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Startzeit</th>
+        <th>Platte</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.KommendeGruppeBSpiele)
+    {
+        <tr>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.StartZeit</td>
+            <td>@item.Platte</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+<h2>Bereits gespielt</h2>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Platte</th>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Ergebnis</th>
+        <th>Gewinner</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.VergangeneGruppeBSpiele)
+    {
+        <tr>
+            <td>@item.Platte</td>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.Ergebnis</td>
+            <td>@item.GewinnerName</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
 
 <h2>Gruppe C</h2>
 
@@ -60,6 +172,60 @@
         <tr>
             <td>@item.Id</td>
             <td>@item.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h2>Kommende Spiele</h2>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Startzeit</th>
+        <th>Platte</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.KommendeGruppeCSpiele)
+    {
+        <tr>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.StartZeit</td>
+            <td>@item.Platte</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+<h2>Bereits gespielt</h2>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Platte</th>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Ergebnis</th>
+        <th>Gewinner</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.VergangeneGruppeCSpiele)
+    {
+        <tr>
+            <td>@item.Platte</td>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.Ergebnis</td>
+            <td>@item.GewinnerName</td>
         </tr>
     }
     </tbody>
@@ -86,6 +252,59 @@
     </tbody>
 </table>
 
+<h2>Kommende Spiele</h2>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Startzeit</th>
+        <th>Platte</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.KommendeGruppeDSpiele)
+    {
+        <tr>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.StartZeit</td>
+            <td>@item.Platte</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+<h2>Bereits gespielt</h2>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Platte</th>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Ergebnis</th>
+        <th>Gewinner</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.VergangeneGruppeDSpiele)
+    {
+        <tr>
+            <td>@item.Platte</td>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.Ergebnis</td>
+            <td>@item.GewinnerName</td>
+        </tr>
+    }
+    </tbody>
+</table>
 
 <h2>Gruppe E</h2>
 
@@ -102,6 +321,60 @@
         <tr>
             <td>@item.Id</td>
             <td>@item.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h2>Kommende Spiele</h2>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Startzeit</th>
+        <th>Platte</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.KommendeGruppeESpiele)
+    {
+        <tr>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.StartZeit</td>
+            <td>@item.Platte</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+<h2>Bereits gespielt</h2>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Platte</th>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Ergebnis</th>
+        <th>Gewinner</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.VergangeneGruppeESpiele)
+    {
+        <tr>
+            <td>@item.Platte</td>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.Ergebnis</td>
+            <td>@item.GewinnerName</td>
         </tr>
     }
     </tbody>
@@ -128,6 +401,60 @@
     </tbody>
 </table>
 
+<h2>Kommende Spiele</h2>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Startzeit</th>
+        <th>Platte</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.KommendeGruppeFSpiele)
+    {
+        <tr>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.StartZeit</td>
+            <td>@item.Platte</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+<h2>Bereits gespielt</h2>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Platte</th>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Ergebnis</th>
+        <th>Gewinner</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.VergangeneGruppeFSpiele)
+    {
+        <tr>
+            <td>@item.Platte</td>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.Ergebnis</td>
+            <td>@item.GewinnerName</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
 
 <h2>Gruppe G</h2>
 
@@ -144,6 +471,60 @@
         <tr>
             <td>@item.Id</td>
             <td>@item.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h2>Kommende Spiele</h2>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Startzeit</th>
+        <th>Platte</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.KommendeGruppeGSpiele)
+    {
+        <tr>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.StartZeit</td>
+            <td>@item.Platte</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+<h2>Bereits gespielt</h2>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Platte</th>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Ergebnis</th>
+        <th>Gewinner</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.VergangeneGruppeGSpiele)
+    {
+        <tr>
+            <td>@item.Platte</td>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.Ergebnis</td>
+            <td>@item.GewinnerName</td>
         </tr>
     }
     </tbody>
