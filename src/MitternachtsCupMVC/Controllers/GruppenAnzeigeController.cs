@@ -14,11 +14,23 @@ public class GruppenAnzeigeController : Controller
     }
     public async Task<IActionResult> Index()
     {
-        var teams = await _gruppenAnzeigeRepository.GetGruppeATeams();
+        var teamsA = await _gruppenAnzeigeRepository.GetGruppeATeams();
+        var teamsB = await _gruppenAnzeigeRepository.GetGruppeBTeams();
+        var teamsC = await _gruppenAnzeigeRepository.GetGruppeCTeams();
+        var teamsD = await _gruppenAnzeigeRepository.GetGruppeDTeams();
+        var teamsE = await _gruppenAnzeigeRepository.GetGruppeETeams();
+        var teamsF = await _gruppenAnzeigeRepository.GetGruppeFTeams();
+        var teamsG = await _gruppenAnzeigeRepository.GetGruppeGTeams();
 
         var gruppenAnzeigeVm = new GruppenAnzeigeViewModel()
         {
-            GruppeATeams = teams,
+            GruppeATeams = teamsA,
+            GruppeBTeams = teamsB,
+            GruppeCTeams = teamsC,
+            GruppeDTeams = teamsD,
+            GruppeETeams = teamsE,
+            GruppeFTeams = teamsF,
+            GruppeGTeams = teamsG
         };
         
         return View(gruppenAnzeigeVm);

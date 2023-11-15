@@ -23,9 +23,9 @@ public class GruppenAnzeigeRepository : IGruppenAnzeigeRepository
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<TeamInGruppe>> GetGruppeBTeams()
+    public async Task<IEnumerable<TeamInGruppe>> GetGruppeBTeams()
     {
-        throw new NotImplementedException();
+        return await GetGruppeTeams("Gruppe B");
     }
 
     public Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeBSpiele()
@@ -33,9 +33,9 @@ public class GruppenAnzeigeRepository : IGruppenAnzeigeRepository
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<TeamInGruppe>> GetGruppeCTeams()
+    public async Task<IEnumerable<TeamInGruppe>> GetGruppeCTeams()
     {
-        throw new NotImplementedException();
+        return await GetGruppeTeams("Gruppe C");
     }
 
     public Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeCSpiele()
@@ -43,9 +43,9 @@ public class GruppenAnzeigeRepository : IGruppenAnzeigeRepository
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<TeamInGruppe>> GetGruppeDTeams()
+    public async Task<IEnumerable<TeamInGruppe>> GetGruppeDTeams()
     {
-        throw new NotImplementedException();
+        return await GetGruppeTeams("Gruppe D");
     }
 
     public Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeDSpiele()
@@ -53,9 +53,9 @@ public class GruppenAnzeigeRepository : IGruppenAnzeigeRepository
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<TeamInGruppe>> GetGruppeETeams()
+    public async Task<IEnumerable<TeamInGruppe>> GetGruppeETeams()
     {
-        throw new NotImplementedException();
+        return await GetGruppeTeams("Gruppe E");
     }
 
     public Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeESpiele()
@@ -63,9 +63,9 @@ public class GruppenAnzeigeRepository : IGruppenAnzeigeRepository
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<TeamInGruppe>> GetGruppeFTeams()
+    public async Task<IEnumerable<TeamInGruppe>> GetGruppeFTeams()
     {
-        throw new NotImplementedException();
+        return await GetGruppeTeams("Gruppe F");
     }
 
     public Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeFSpiele()
@@ -73,9 +73,9 @@ public class GruppenAnzeigeRepository : IGruppenAnzeigeRepository
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<TeamInGruppe>> GetGruppeGTeams()
+    public async Task<IEnumerable<TeamInGruppe>> GetGruppeGTeams()
     {
-        throw new NotImplementedException();
+        return await GetGruppeTeams("Gruppe G");
     }
 
     public Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeGSpiele()
