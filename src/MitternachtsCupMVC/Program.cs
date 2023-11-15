@@ -11,6 +11,7 @@ builder.Services.AddScoped<ITeamRepository, TeamRepository>();
 builder.Services.AddScoped<ISpielRepository, SpielRepository>();
 builder.Services.AddScoped<IErgebnisRepository, ErgebnisRepository>();
 builder.Services.AddScoped<ITurnierplanRepository, TurnierplanRepository>();
+builder.Services.AddScoped<IGruppenAnzeigeRepository, GruppenAnzeigeRepository>();
 builder.Services.AddScoped<IGruppenRepository, GruppenRepository>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
