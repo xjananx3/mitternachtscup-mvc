@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using MitternachtsCupMVC.Data;
 using MitternachtsCupMVC.Interfaces;
 using MitternachtsCupMVC.Models;
@@ -12,72 +13,92 @@ public class GruppenAnzeigeRepository : IGruppenAnzeigeRepository
     {
         _context = context;
     }
-    public Task<IEnumerable<Team>> GetGruppeATeams()
+    public async Task<IEnumerable<TeamInGruppe>> GetGruppeATeams()
+    {
+        var spiele = await _context.Spiele
+            .Where(s => s.Name.Contains("Gruppe A"))
+            .ToListAsync();
+
+        var teamIds = spiele
+            .SelectMany(s => new[] { s.TeamAId, s.TeamBId })
+            .Distinct();
+        
+        var teams = await _context.Teams
+            .Where(t => teamIds.Contains(t.Id))
+            .ToListAsync();
+
+        var teamsInGruppe = teams
+            .Select(t => new TeamInGruppe
+            {
+            Id = t.Id,
+            Name = t.Name
+            })
+            .ToList();
+
+        return teamsInGruppe;
+    }
+
+    public Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeASpiele()
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<Spiel>> GetGruppeASpiele()
+    public Task<IEnumerable<TeamInGruppe>> GetGruppeBTeams()
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<Team>> GetGruppeBTeams()
+    public Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeBSpiele()
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<Spiel>> GetGruppeBSpiele()
+    public Task<IEnumerable<TeamInGruppe>> GetGruppeCTeams()
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<Team>> GetGruppeCTeams()
+    public Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeCSpiele()
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<Spiel>> GetGruppeCSpiele()
+    public Task<IEnumerable<TeamInGruppe>> GetGruppeDTeams()
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<Team>> GetGruppeDTeams()
+    public Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeDSpiele()
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<Spiel>> GetGruppeDSpiele()
+    public Task<IEnumerable<TeamInGruppe>> GetGruppeETeams()
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<Team>> GetGruppeETeams()
+    public Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeESpiele()
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<Spiel>> GetGruppeESpiele()
+    public Task<IEnumerable<TeamInGruppe>> GetGruppeFTeams()
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<Team>> GetGruppeFTeams()
+    public Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeFSpiele()
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<Spiel>> GetGruppeFSpiele()
+    public Task<IEnumerable<TeamInGruppe>> GetGruppeGTeams()
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<Team>> GetGruppeGTeams()
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<IEnumerable<Spiel>> GetGruppeGSpiele()
+    public Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeGSpiele()
     {
         throw new NotImplementedException();
     }
