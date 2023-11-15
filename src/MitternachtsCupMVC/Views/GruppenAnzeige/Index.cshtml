@@ -9,16 +9,22 @@
 <table class="table table-bordered">
     <thead>
     <tr>
+        <th>Platzierung</th>
         <th>Team-Nr</th>
         <th>Name</th>
+        <th>Punkte</th>
+        <th>Bilanz</th>
     </tr>
     </thead>
     <tbody>
     @foreach (var item in Model.GruppeATeams)
     {
         <tr>
+            <td>1.</td>
             <td>@item.Id</td>
             <td>@item.Name</td>
+            <td>@item.Punkte</td>
+            <td>@item.Bilanz</td>
         </tr>
     }
     </tbody>
@@ -56,7 +62,6 @@
 <table class="table table-bordered">
     <thead>
     <tr>
-        <th>Platte</th>
         <th>Spiel-Name</th>
         <th>Team A</th>
         <th>Team B</th>
@@ -68,7 +73,6 @@
     @foreach (var item in Model.VergangeneGruppeASpiele)
     {
         <tr>
-            <td>@item.Platte</td>
             <td>@item.SpielName</td>
             <td>@item.TeamAName</td>
             <td>@item.TeamBName</td>
@@ -86,16 +90,22 @@
 <table class="table table-bordered">
     <thead>
     <tr>
+        <th>Platzierung</th>
         <th>Team-Nr</th>
         <th>Name</th>
+        <th>Punkte</th>
+        <th>Bilanz</th>
     </tr>
     </thead>
     <tbody>
     @foreach (var item in Model.GruppeBTeams)
     {
         <tr>
+            <td>1.</td>
             <td>@item.Id</td>
             <td>@item.Name</td>
+            <td>@item.Punkte</td>
+            <td>@item.Bilanz</td>
         </tr>
     }
     </tbody>
@@ -132,7 +142,6 @@
 <table class="table table-bordered">
     <thead>
     <tr>
-        <th>Platte</th>
         <th>Spiel-Name</th>
         <th>Team A</th>
         <th>Team B</th>
@@ -144,7 +153,6 @@
     @foreach (var item in Model.VergangeneGruppeBSpiele)
     {
         <tr>
-            <td>@item.Platte</td>
             <td>@item.SpielName</td>
             <td>@item.TeamAName</td>
             <td>@item.TeamBName</td>
@@ -162,16 +170,22 @@
 <table class="table table-bordered">
     <thead>
     <tr>
+        <th>Platzierung</th>
         <th>Team-Nr</th>
         <th>Name</th>
+        <th>Punkte</th>
+        <th>Bilanz</th>
     </tr>
     </thead>
     <tbody>
     @foreach (var item in Model.GruppeCTeams)
     {
         <tr>
+            <td>1.</td>
             <td>@item.Id</td>
             <td>@item.Name</td>
+            <td>@item.Punkte</td>
+            <td>@item.Bilanz</td>
         </tr>
     }
     </tbody>
@@ -208,7 +222,6 @@
 <table class="table table-bordered">
     <thead>
     <tr>
-        <th>Platte</th>
         <th>Spiel-Name</th>
         <th>Team A</th>
         <th>Team B</th>
@@ -220,7 +233,6 @@
     @foreach (var item in Model.VergangeneGruppeCSpiele)
     {
         <tr>
-            <td>@item.Platte</td>
             <td>@item.SpielName</td>
             <td>@item.TeamAName</td>
             <td>@item.TeamBName</td>
@@ -237,16 +249,22 @@
 <table class="table table-bordered">
     <thead>
     <tr>
+        <th>Platzierung</th>
         <th>Team-Nr</th>
         <th>Name</th>
+        <th>Punkte</th>
+        <th>Bilanz</th>
     </tr>
     </thead>
     <tbody>
     @foreach (var item in Model.GruppeDTeams)
     {
         <tr>
+            <td>1.</td>
             <td>@item.Id</td>
             <td>@item.Name</td>
+            <td>@item.Punkte</td>
+            <td>@item.Bilanz</td>
         </tr>
     }
     </tbody>
@@ -283,7 +301,6 @@
 <table class="table table-bordered">
     <thead>
     <tr>
-        <th>Platte</th>
         <th>Spiel-Name</th>
         <th>Team A</th>
         <th>Team B</th>
@@ -295,7 +312,6 @@
     @foreach (var item in Model.VergangeneGruppeDSpiele)
     {
         <tr>
-            <td>@item.Platte</td>
             <td>@item.SpielName</td>
             <td>@item.TeamAName</td>
             <td>@item.TeamBName</td>
@@ -311,16 +327,22 @@
 <table class="table table-bordered">
     <thead>
     <tr>
+        <th>Platzierung</th>
         <th>Team-Nr</th>
         <th>Name</th>
+        <th>Punkte</th>
+        <th>Bilanz</th>
     </tr>
     </thead>
     <tbody>
     @foreach (var item in Model.GruppeETeams)
     {
         <tr>
+            <td>1.</td>
             <td>@item.Id</td>
             <td>@item.Name</td>
+            <td>@item.Punkte</td>
+            <td>@item.Bilanz</td>
         </tr>
     }
     </tbody>
@@ -357,7 +379,6 @@
 <table class="table table-bordered">
     <thead>
     <tr>
-        <th>Platte</th>
         <th>Spiel-Name</th>
         <th>Team A</th>
         <th>Team B</th>
@@ -369,7 +390,6 @@
     @foreach (var item in Model.VergangeneGruppeESpiele)
     {
         <tr>
-            <td>@item.Platte</td>
             <td>@item.SpielName</td>
             <td>@item.TeamAName</td>
             <td>@item.TeamBName</td>
@@ -386,16 +406,22 @@
 <table class="table table-bordered">
     <thead>
     <tr>
+        <th>Platzierung</th>
         <th>Team-Nr</th>
         <th>Name</th>
+        <th>Punkte</th>
+        <th>Bilanz</th>
     </tr>
     </thead>
     <tbody>
     @foreach (var item in Model.GruppeFTeams)
     {
         <tr>
+            <td>1.</td>
             <td>@item.Id</td>
             <td>@item.Name</td>
+            <td>@item.Punkte</td>
+            <td>@item.Bilanz</td>
         </tr>
     }
     </tbody>
@@ -432,7 +458,6 @@
 <table class="table table-bordered">
     <thead>
     <tr>
-        <th>Platte</th>
         <th>Spiel-Name</th>
         <th>Team A</th>
         <th>Team B</th>
@@ -444,7 +469,6 @@
     @foreach (var item in Model.VergangeneGruppeFSpiele)
     {
         <tr>
-            <td>@item.Platte</td>
             <td>@item.SpielName</td>
             <td>@item.TeamAName</td>
             <td>@item.TeamBName</td>
@@ -461,16 +485,22 @@
 <table class="table table-bordered">
     <thead>
     <tr>
+        <th>Platzierung</th>
         <th>Team-Nr</th>
         <th>Name</th>
+        <th>Punkte</th>
+        <th>Bilanz</th>
     </tr>
     </thead>
     <tbody>
     @foreach (var item in Model.GruppeGTeams)
     {
         <tr>
+            <td>1.</td>
             <td>@item.Id</td>
             <td>@item.Name</td>
+            <td>@item.Punkte</td>
+            <td>@item.Bilanz</td>
         </tr>
     }
     </tbody>
@@ -507,7 +537,6 @@
 <table class="table table-bordered">
     <thead>
     <tr>
-        <th>Platte</th>
         <th>Spiel-Name</th>
         <th>Team A</th>
         <th>Team B</th>
@@ -519,7 +548,6 @@
     @foreach (var item in Model.VergangeneGruppeGSpiele)
     {
         <tr>
-            <td>@item.Platte</td>
             <td>@item.SpielName</td>
             <td>@item.TeamAName</td>
             <td>@item.TeamBName</td>
