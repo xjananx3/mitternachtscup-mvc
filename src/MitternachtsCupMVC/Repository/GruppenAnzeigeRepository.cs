@@ -15,27 +15,7 @@ public class GruppenAnzeigeRepository : IGruppenAnzeigeRepository
     }
     public async Task<IEnumerable<TeamInGruppe>> GetGruppeATeams()
     {
-        var spiele = await _context.Spiele
-            .Where(s => s.Name.Contains("Gruppe A"))
-            .ToListAsync();
-
-        var teamIds = spiele
-            .SelectMany(s => new[] { s.TeamAId, s.TeamBId })
-            .Distinct();
-        
-        var teams = await _context.Teams
-            .Where(t => teamIds.Contains(t.Id))
-            .ToListAsync();
-
-        var teamsInGruppe = teams
-            .Select(t => new TeamInGruppe
-            {
-            Id = t.Id,
-            Name = t.Name
-            })
-            .ToList();
-
-        return teamsInGruppe;
+        return await GetGruppeTeams("Gruppe A");
     }
 
     public Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeASpiele()
@@ -101,5 +81,30 @@ public class GruppenAnzeigeRepository : IGruppenAnzeigeRepository
     public Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeGSpiele()
     {
         throw new NotImplementedException();
+    }
+
+    private async Task<IEnumerable<TeamInGruppe>> GetGruppeTeams(string gruppenName)
+    {
+        var spiele = await _context.Spiele
+            .Where(s => s.Name.Contains(gruppenName))
+            .ToListAsync();
+
+        var teamIds = spiele
+            .SelectMany(s => new[] { s.TeamAId, s.TeamBId })
+            .Distinct();
+        
+        var teams = await _context.Teams
+            .Where(t => teamIds.Contains(t.Id))
+            .ToListAsync();
+
+        var teamsInGruppe = teams
+            .Select(t => new TeamInGruppe
+            {
+                Id = t.Id,
+                Name = t.Name
+            })
+            .ToList();
+
+        return teamsInGruppe;
     }
 }
