@@ -1,22 +1,23 @@
+using MitternachtsCupMVC.Data;
 using MitternachtsCupMVC.Models;
 
 namespace MitternachtsCupMVC.Interfaces;
 
 public interface IGruppenAnzeigeRepository
 {
-    Task<IEnumerable<Team>> GetGruppeATeams();
-    Task<IEnumerable<Spiel>> GetGruppeASpiele();
-    Task<IEnumerable<Team>> GetGruppeBTeams();
-    Task<IEnumerable<Spiel>> GetGruppeBSpiele();
-    Task<IEnumerable<Team>> GetGruppeCTeams();
-    Task<IEnumerable<Spiel>> GetGruppeCSpiele();
-    Task<IEnumerable<Team>> GetGruppeDTeams();
-    Task<IEnumerable<Spiel>> GetGruppeDSpiele();
-    Task<IEnumerable<Team>> GetGruppeETeams();
-    Task<IEnumerable<Spiel>> GetGruppeESpiele();
-    Task<IEnumerable<Team>> GetGruppeFTeams();
-    Task<IEnumerable<Spiel>> GetGruppeFSpiele();
-    Task<IEnumerable<Team>> GetGruppeGTeams();
-    Task<IEnumerable<Spiel>> GetGruppeGSpiele();
+    Task<IEnumerable<TeamInGruppe>> GetGruppeATeams();
+    Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeASpiele();
+    Task<IEnumerable<TeamInGruppe>> GetGruppeBTeams();
+    Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeBSpiele();
+    Task<IEnumerable<TeamInGruppe>> GetGruppeCTeams();
+    Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeCSpiele();
+    Task<IEnumerable<TeamInGruppe>> GetGruppeDTeams();
+    Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeDSpiele();
+    Task<IEnumerable<TeamInGruppe>> GetGruppeETeams();
+    Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeESpiele();
+    Task<IEnumerable<TeamInGruppe>> GetGruppeFTeams();
+    Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeFSpiele();
+    Task<IEnumerable<TeamInGruppe>> GetGruppeGTeams();
+    Task<IEnumerable<GruppenSpielTurnierPlan>> GetGruppeGSpiele();
     
 }
