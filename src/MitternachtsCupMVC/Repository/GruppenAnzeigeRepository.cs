@@ -140,7 +140,9 @@ public class GruppenAnzeigeRepository : IGruppenAnzeigeRepository
             .Select(t => new TeamInGruppe
             {
                 Id = t.Id,
-                Name = t.Name
+                Name = t.Name,
+                Punkte = ErrechnePunkte(t.Id),
+                Bilanz = ErrechneBilanz(t.Id)
             })
             .ToList();
 
@@ -205,6 +207,59 @@ public class GruppenAnzeigeRepository : IGruppenAnzeigeRepository
             }).ToList();
 
         return spieleMitErgebnis;
+    }
+
+    private int ErrechnePunkte(int teamId)
+    {
+        var ergebnisse =  _context.Ergebnisse.ToList();
+
+        var siegeAnzahl = ergebnisse
+            .Count(e => e.TeamId == teamId);
+
+        return siegeAnzahl * 2;
+    }
+    
+    private string ErrechneBilanz(int teamId)
+    {
+        var ergebnisse =  _context.Ergebnisse
+            .Where(e => e.TeamId == teamId)
+            .ToList();
+        
+
+        var spiele =  _context.Spiele
+            .Where(s => s.TeamAId == teamId || s.TeamBId == teamId)
+            .ToList();
+
+        int gewonnenePunkte = 0;
+        int gegenPunkte = 0;
+
+        foreach (var ergebnis in ergebnisse)
+        {
+            if (ergebnis.PunkteTeamA > ergebnis.PunkteTeamB)
+            {
+                gewonnenePunkte += ergebnis.PunkteTeamA;
+                gegenPunkte += ergebnis.PunkteTeamB;
+            }
+            else
+            {
+                gewonnenePunkte += ergebnis.PunkteTeamB;
+                gegenPunkte += ergebnis.PunkteTeamA;
+            }
+        }
+
+        foreach (var spiel in spiele)
+        {
+            var ergebnis = ergebnisse.FirstOrDefault(e => e.SpielId == spiel.Id);
+            if (ergebnis != null && ergebnis.TeamId != teamId)
+            {
+                // Das Team hat das Spiel verloren
+                gegenPunkte += (ergebnis.TeamId == spiel.TeamAId) ? ergebnis.PunkteTeamA : ergebnis.PunkteTeamB;
+                gewonnenePunkte += (ergebnis.TeamId == spiel.TeamAId) ? ergebnis.PunkteTeamB : ergebnis.PunkteTeamA;
+            }
+        }
+
+        return $"{gewonnenePunkte} : {gegenPunkte}";
+
     }
     
     private string ErgebnisAufbereiten(int punkteA, int punkteB)
