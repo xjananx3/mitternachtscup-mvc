@@ -1,0 +1,60 @@
+@model KoPhaseViewModel
+
+@{
+    
+}
+
+<h1>Viertelfinale</h1>
+
+<h3>Kommende Spiele</h3>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Startzeit</th>
+        <th>Platte</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.KommendeKoSpiele)
+    {
+        <tr>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.StartZeit</td>
+            <td>@item.Platte</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+<h3>Bereits gespielt</h3>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Ergebnis</th>
+        <th>Gewinner</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.VergangeneKoSpiele)
+    {
+        <tr>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.Ergebnis</td>
+            <td>@item.GewinnerName</td>
+        </tr>
+    }
+    </tbody>
+</table>

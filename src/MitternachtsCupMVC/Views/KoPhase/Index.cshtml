@@ -1,0 +1,216 @@
+@model IndexKoPhaseViewModel
+
+@{
+    
+}
+
+<h1>Finale</h1>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Startzeit</th>
+        <th>Platte</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>@Model.Finale.SpielName</td>
+        <td>@Model.Finale.TeamAName</td>
+        <td>@Model.Finale.TeamBName</td>
+        <td>@Model.Finale.StartZeit</td>
+        <td>@Model.Finale.Platte</td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Spiel um Platz 3</h2>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Startzeit</th>
+        <th>Platte</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.SpielUmPlatz3.SpielName</td>
+            <td>@Model.SpielUmPlatz3.TeamAName</td>
+            <td>@Model.SpielUmPlatz3.TeamBName</td>
+            <td>@Model.SpielUmPlatz3.StartZeit</td>
+            <td>@Model.SpielUmPlatz3.Platte</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Halbfinale</h2>
+
+<h3>Kommende Spiele</h3>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Startzeit</th>
+        <th>Platte</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.KommendeHalbfinals)
+    {
+        <tr>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.StartZeit</td>
+            <td>@item.Platte</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+<h3>Bereits gespielt</h3>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Ergebnis</th>
+        <th>Gewinner</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.VergangeneHalbfinals)
+    {
+        <tr>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.Ergebnis</td>
+            <td>@item.GewinnerName</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h2>Viertelfinale</h2>
+
+<h3>Kommende Spiele</h3>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Startzeit</th>
+        <th>Platte</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.KommendeViertelfinals)
+    {
+        <tr>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.StartZeit</td>
+            <td>@item.Platte</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+<h3>Bereits gespielt</h3>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Ergebnis</th>
+        <th>Gewinner</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.VergangeneViertelfinals)
+    {
+        <tr>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.Ergebnis</td>
+            <td>@item.GewinnerName</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h2>Achtelfinale</h2>
+
+<h3>Kommende Spiele</h3>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Startzeit</th>
+        <th>Platte</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.KommendeAchtelfinals)
+    {
+        <tr>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.StartZeit</td>
+            <td>@item.Platte</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+<h3>Bereits gespielt</h3>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Spiel-Name</th>
+        <th>Team A</th>
+        <th>Team B</th>
+        <th>Ergebnis</th>
+        <th>Gewinner</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.VergangeneAchtelfinals)
+    {
+        <tr>
+            <td>@item.SpielName</td>
+            <td>@item.TeamAName</td>
+            <td>@item.TeamBName</td>
+            <td>@item.Ergebnis</td>
+            <td>@item.GewinnerName</td>
+        </tr>
+    }
+    </tbody>
+</table>
