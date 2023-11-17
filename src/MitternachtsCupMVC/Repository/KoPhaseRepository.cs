@@ -44,41 +44,15 @@ public class KoPhaseRepository : IKoPhaseRepository
 
     public async Task<KoSpiel> GetFinale()
     {
-        var spiel = await _context.Spiele.FirstOrDefaultAsync(s => s.Name.Contains("Finale"));
-        var teams = await _context.Teams.ToListAsync();
-        
-        return new KoSpiel()
-        {
-            Platte = spiel.Platte.ToString(),
-            SpielId = spiel.Id,
-            SpielName = spiel.Name,
-            StartZeit = spiel.StartZeit.ToString(),
-            TeamAId = teams.FirstOrDefault(t => t.Id == spiel.TeamAId)?.Id,
-            TeamAName = teams.FirstOrDefault(t => t.Id == spiel.TeamAId)?.Name,
-            TeamBId = teams.FirstOrDefault(t => t.Id == spiel.TeamBId)?.Id,
-            TeamBName = teams.FirstOrDefault(t => t.Id == spiel.TeamBId)?.Name
-        };
+        return await GetFinalSpiel("Finale");
     }
 
     public async Task<KoSpiel> GetSpielUmPlatz3()
     {
-        var spiel = await _context.Spiele.FirstOrDefaultAsync(s => s.Name.Contains("Spiel um Platz 3"));
-        var teams = await _context.Teams.ToListAsync();
-        
-        return new KoSpiel()
-        {
-            Platte = spiel.Platte.ToString(),
-            SpielId = spiel.Id,
-            SpielName = spiel.Name,
-            StartZeit = spiel.StartZeit.ToString(),
-            TeamAId = teams.FirstOrDefault(t => t.Id == spiel.TeamAId)?.Id,
-            TeamAName = teams.FirstOrDefault(t => t.Id == spiel.TeamAId)?.Name,
-            TeamBId = teams.FirstOrDefault(t => t.Id == spiel.TeamBId)?.Id,
-            TeamBName = teams.FirstOrDefault(t => t.Id == spiel.TeamBId)?.Name
-        };
+        return await GetFinalSpiel("Spiel um Platz 3");
     }
 
-    public async Task<IEnumerable<KoSpiel>> GetKommendeKoSpiele(string koSpielName)
+    private async Task<IEnumerable<KoSpiel>> GetKommendeKoSpiele(string koSpielName)
     {
         var ergebnisse = await _context.Ergebnisse.ToListAsync();
         var teams = await _context.Teams.ToListAsync();
@@ -104,7 +78,7 @@ public class KoPhaseRepository : IKoPhaseRepository
         return spielOhneErgebnis;
     }
 
-    public async Task<IEnumerable<KoSpiel>> GetVergangeneKoSpiele(string koSpielName)
+    private async Task<IEnumerable<KoSpiel>> GetVergangeneKoSpiele(string koSpielName)
     {
         var ergebnisse = await _context.Ergebnisse.ToListAsync();
         var teams = await _context.Teams.ToListAsync();
@@ -135,6 +109,53 @@ public class KoPhaseRepository : IKoPhaseRepository
             }).ToList();
 
         return spieleMitErgebnis;
+    }
+
+    private async Task<KoSpiel> GetFinalSpiel(string spielName)
+    {
+        var spiel = await _context.Spiele.FirstOrDefaultAsync(s => s.Name.Contains(spielName));
+
+        if (spiel != null)
+        {
+            var ergebnis = await _context.Ergebnisse.FirstOrDefaultAsync(e => e.SpielId == spiel.Id);
+            var teams = await _context.Teams.ToListAsync();
+
+            if (ergebnis != null)
+            {
+                var teamA = teams.FirstOrDefault(t => t.Id == spiel.TeamAId);
+                var teamB = teams.FirstOrDefault(t => t.Id == spiel.TeamBId);
+
+                return new KoSpiel
+                {
+                    Platte = spiel.Platte.ToString(),
+                    SpielId = spiel.Id,
+                    SpielName = spiel.Name,
+                    StartZeit = spiel.StartZeit.ToString(),
+                    TeamAId = teamA?.Id,
+                    TeamAName = teamA?.Name,
+                    TeamBId = teamB?.Id,
+                    TeamBName = teamB?.Name,
+                    Ergebnis = ErgebnisAufbereiten(ergebnis.PunkteTeamA, ergebnis.PunkteTeamB),
+                    GewinnerName = ergebnis.PunkteTeamA > ergebnis.PunkteTeamB ? teamA?.Name : teamB?.Name
+                };
+            }
+            else
+            {
+                return new KoSpiel
+                {
+                    Platte = spiel.Platte.ToString(),
+                    SpielId = spiel.Id,
+                    SpielName = spiel.Name,
+                    StartZeit = spiel.StartZeit.ToString(),
+                    TeamAId = teams.FirstOrDefault(t => t.Id == spiel.TeamAId)?.Id,
+                    TeamAName = teams.FirstOrDefault(t => t.Id == spiel.TeamAId)?.Name,
+                    TeamBId = teams.FirstOrDefault(t => t.Id == spiel.TeamBId)?.Id,
+                    TeamBName = teams.FirstOrDefault(t => t.Id == spiel.TeamBId)?.Name
+                };
+            }
+        }
+
+        return null;
     }
     
     private string ErgebnisAufbereiten(int punkteA, int punkteB)
