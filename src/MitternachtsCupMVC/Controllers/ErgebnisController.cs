@@ -117,6 +117,42 @@ public class ErgebnisController : Controller
         return RedirectToAction("Index", "Turnierplan");
     }
 
+    public async Task<IActionResult> Edit(int id)
+    {
+        var ergebnis = await _ergebnisRepository.GetByIdAsync(id);
+        if (ergebnis == null) return View("Error");
+
+        var ergebnisVm = new EditErgebnisViewModel()
+        {
+            PunkteTeamA = ergebnis.PunkteTeamA,
+            PunkteTeamB = ergebnis.PunkteTeamB,
+            SpielId = ergebnis.SpielId,
+            Spiel = ergebnis.Spiel,
+            TeamId = ergebnis.TeamId,
+            GewinnerTeam = ergebnis.GewinnerTeam
+        };
+        return View(ergebnisVm);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(int id, EditErgebnisViewModel ergebnisVm)
+    {
+        var ergebnisDetails = await _ergebnisRepository.GetByIdAsyncNoTracking(id);
+        if (ergebnisDetails == null) return View("Error");
+
+        var ergebnis = new Ergebnis
+        {
+            Id = id,
+            PunkteTeamA = ergebnisVm.PunkteTeamA,
+            PunkteTeamB = ergebnisVm.PunkteTeamB,
+            SpielId = ergebnisVm.SpielId,
+            TeamId = ergebnisVm.TeamId
+        };
+        _ergebnisRepository.Update(ergebnis);
+
+        return RedirectToAction("Index");
+    }
+
     public async Task<IActionResult> Delete(int id)
     {
         var ergebnisDetails = await _ergebnisRepository.GetByIdAsync(id);
