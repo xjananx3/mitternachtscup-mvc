@@ -82,4 +82,38 @@ public class KoPhaseController : Controller
         
         return View(koPhaseVm);
     }
+
+    public async Task<IActionResult> SpielUmPlatz3()
+    {
+        var spielUmPlatz3 = await _koPhaseRepository.GetSpielUmPlatz3();
+
+        var finalSpielVm = new FinalSpielViewModel()
+        {
+            Platte = spielUmPlatz3.Platte,
+            SpielName = spielUmPlatz3.SpielName,
+            StartZeit = spielUmPlatz3.StartZeit,
+            TeamAName = spielUmPlatz3.TeamAName,
+            TeamBName = spielUmPlatz3.TeamBName,
+            Ergebnis = spielUmPlatz3.Ergebnis,
+            GewinnerName = spielUmPlatz3.GewinnerName
+        };
+        return View(finalSpielVm);
+    }
+
+    public async Task<IActionResult> Finale()
+    {
+        var finale = await _koPhaseRepository.GetFinale();
+
+        var finalSpielVm = new FinalSpielViewModel()
+        {
+            Platte = finale.Platte,
+            SpielName = finale.SpielName,
+            StartZeit = finale.StartZeit,
+            TeamAName = finale.TeamAName,
+            TeamBName = finale.TeamBName,
+            Ergebnis = finale.Ergebnis,
+            GewinnerName = finale.GewinnerName
+        };
+        return View(finalSpielVm);
+    }
 }
