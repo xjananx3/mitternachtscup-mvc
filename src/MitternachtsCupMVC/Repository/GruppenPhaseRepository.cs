@@ -5,11 +5,11 @@ using MitternachtsCupMVC.Models;
 
 namespace MitternachtsCupMVC.Repository;
 
-public class GruppenAnzeigeRepository : IGruppenAnzeigeRepository
+public class GruppenPhaseRepository : IGruppenPhaseRepository
 {
     private readonly ApplicationDbContext _context;
 
-    public GruppenAnzeigeRepository(ApplicationDbContext context)
+    public GruppenPhaseRepository(ApplicationDbContext context)
     {
         _context = context;
     }
