@@ -3,7 +3,7 @@ using MitternachtsCupMVC.Models;
 
 namespace MitternachtsCupMVC.Interfaces;
 
-public interface IGruppenAnzeigeRepository
+public interface IGruppenPhaseRepository
 {
     Task<IEnumerable<TeamInGruppe>> GetGruppeATeams();
     Task<IEnumerable<GruppenSpielTurnierPlan>> GetKommendeGruppeASpiele();
