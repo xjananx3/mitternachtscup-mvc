@@ -38,6 +38,15 @@ public class ErgebnisRepository : IErgebnisRepository
             .FirstOrDefaultAsync(e => e.Id == id);
     }
 
+    public async Task<Ergebnis> GetByIdAsyncNoTracking(int id)
+    {
+        return await _context.Ergebnisse
+            .Include(i => i.Spiel)
+            .Include(t => t.GewinnerTeam)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(e => e.Id == id);
+    }
+
     public bool Add(Ergebnis ergebnis)
     {
         _context.Add(ergebnis);
