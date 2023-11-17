@@ -21,39 +21,25 @@ public class SpielController : Controller
         var spiele = await _spielRepository.GetAll();
         var teams = await _teamRepository.GetAll();
 
-        var spieleListe = new List<SpielViewModel>();
-        string teamAName = string.Empty;
-        string teamBName = string.Empty;
-
-        foreach (var spiel in spiele)
-        {
-            foreach (var team in teams)
+        var spieleListe = spiele
+            .Select(spiel =>
             {
-                if (spiel.TeamAId == team.Id)
-                {
-                    teamAName = team.Name;
-                }
+                var teamA = teams.FirstOrDefault(t => t.Id == spiel.TeamAId);
+                var teamB = teams.FirstOrDefault(t => t.Id == spiel.TeamBId);
 
-                if (spiel.TeamBId == team.Id)
+                return new SpielViewModel
                 {
-                    teamBName = team.Name;
-                }
-                
-            }
-            var spieleViewModel = new SpielViewModel
-            {
-                Id = spiel.Id,
-                Name = spiel.Name,
-                Platte = spiel.Platte,
-                StartZeit = spiel.StartZeit,
-                SpielDauer = spiel.SpielDauer,
-                TeamAId = spiel.TeamAId,
-                TeamAName = teamAName,
-                TeamBName = teamBName,
-                TeamBId = spiel.TeamBId
-            };
-            spieleListe.Add(spieleViewModel);
-        }
+                    Id = spiel.Id,
+                    Name = spiel.Name,
+                    Platte = spiel.Platte,
+                    StartZeit = spiel.StartZeit,
+                    SpielDauer = spiel.SpielDauer,
+                    TeamAId = spiel.TeamAId,
+                    TeamAName = teamA?.Name,
+                    TeamBName = teamB?.Name,
+                    TeamBId = spiel.TeamBId
+                };
+            }).ToList();
         
         return View(spieleListe);
     }
