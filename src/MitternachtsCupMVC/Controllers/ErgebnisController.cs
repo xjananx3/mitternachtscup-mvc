@@ -22,57 +22,33 @@ public class ErgebnisController : Controller
         var spiele = await _spielRepository.GetAll();
         var teams = await _teamRepository.GetAll();
 
-        var ergebnisListe = new List<ErgebnisViewModel>();
-        string spielName = string.Empty;
-        string gewinnerTeamName = string.Empty;
-        string teamAName = string.Empty;
-        string teamBName = string.Empty;
-
-        foreach (var ergebnis in ergebnisse)
-        {
-            foreach (var spiel in spiele)
+        var ergebnisListe = ergebnisse
+            .Select(ergebnis =>
             {
-                if (ergebnis.SpielId == spiel.Id)
+                var spiel = spiele.FirstOrDefault(s => s.Id == ergebnis.SpielId);
+                if (spiel != null)
                 {
-                    spielName = spiel.Name;
-                    
-                    foreach (var team in teams)
-                    {
-                        if (spiel.TeamAId == team.Id)
-                        {
-                            teamAName = team.Name;
-                        }
+                    var teamA = teams.FirstOrDefault(t => t.Id == spiel.TeamAId);
+                    var teamB = teams.FirstOrDefault(t => t.Id == spiel.TeamBId);
+                    var gewinnerTeam = ergebnis.PunkteTeamA > ergebnis.PunkteTeamB ? teamA : teamB;
 
-                        if (spiel.TeamBId == team.Id)
-                        {
-                            teamBName = team.Name;
-                        }
-                
-                    }
-                    if (ergebnis.PunkteTeamA > ergebnis.PunkteTeamB)
+                    return new ErgebnisViewModel
                     {
-                        gewinnerTeamName = spiel.TeamA.Name;
-                    }
-                    else
-                    {
-                        gewinnerTeamName = spiel.TeamB.Name;
-                    }
+                        Id = ergebnis.Id,
+                        SpielName = spiel.Name,
+                        SpielId = ergebnis.SpielId,
+                        TeamAName = teamA?.Name,
+                        PunkteTeamA = ergebnis.PunkteTeamA,
+                        TeamBName = teamB?.Name,
+                        PunkteTeamB = ergebnis.PunkteTeamB,
+                        GewinnerTeamId = ergebnis.TeamId,
+                        GewinnerTeamName = gewinnerTeam?.Name
+                    };
                 }
-            }
-            var ergebnisVm = new ErgebnisViewModel()
-            {
-                Id = ergebnis.Id,
-                SpielName = spielName,
-                SpielId = ergebnis.SpielId,
-                TeamAName = teamAName,
-                PunkteTeamA = ergebnis.PunkteTeamA,
-                TeamBName = teamBName,
-                PunkteTeamB = ergebnis.PunkteTeamB,
-                GewinnerTeamId = ergebnis.TeamId,
-                GewinnerTeamName = gewinnerTeamName
-            };
-            ergebnisListe.Add(ergebnisVm);
-        }
+                return null;
+            })
+            .Where(ergebnisVm => ergebnisVm != null)
+            .ToList();
         
         return View(ergebnisListe);
     }
