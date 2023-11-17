@@ -1,0 +1,26 @@
+@model EditErgebnisViewModel
+
+@{
+    
+}
+
+<form method="post" asp-action="Edit">
+    <input type="hidden" asp-for="SpielId">
+    <p>@Model.Spiel.Name</p>
+    <div class="form-group">
+        <label asp-for="PunkteTeamA">Punkte Team A</label>
+        <input asp-for="PunkteTeamA" class="form-control" placeholder="PunkteTeamA">
+        <span asp-validation-for="PunkteTeamA" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PunkteTeamB">Punkte Team B</label>
+        <input asp-for="PunkteTeamB" class="form-control" placeholder="PunkteTeamB">
+        <span asp-validation-for="PunkteTeamB" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TeamId">Gewinner Team ID  aktueller Gewinner: @Model.GewinnerTeam.Name</label>
+        <input asp-for="TeamId" class="form-control" placeholder="StartZeit">
+        <span asp-validation-for="TeamId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

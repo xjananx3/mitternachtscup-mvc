@@ -32,7 +32,7 @@
             <td>@item.PunkteTeamB</td>
             <td>
                 <a asp-controller="Ergebnis" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Löschen</a>
-                <a asp-controller="Ergebnis" asp-action="" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Bearbeiten</a>
+                <a asp-controller="Ergebnis" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Bearbeiten</a>
             </td>
             <td>@item.GewinnerTeamName</td>
         </tr>
