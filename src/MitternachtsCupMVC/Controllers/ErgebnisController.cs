@@ -79,18 +79,27 @@ public class ErgebnisController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(CreateErgebnisViewModel ergebnisVm)
     {
-        var ergebnis = new Ergebnis()
+        if (ModelState.IsValid)
         {
-            PunkteTeamA = ergebnisVm.PunkteTeamA,
-            PunkteTeamB = ergebnisVm.PunkteTeamB,
-            SpielId = ergebnisVm.SpielId,
-            Spiel = ergebnisVm.Spiel,
-            TeamId = ergebnisVm.TeamId,
-            GewinnerTeam = ergebnisVm.GewinnerTeam,
-        };
+            var ergebnis = new Ergebnis()
+            {
+                PunkteTeamA = ergebnisVm.PunkteTeamA,
+                PunkteTeamB = ergebnisVm.PunkteTeamB,
+                SpielId = ergebnisVm.SpielId,
+                Spiel = ergebnisVm.Spiel,
+                TeamId = ergebnisVm.TeamId,
+                GewinnerTeam = ergebnisVm.GewinnerTeam,
+            };
 
-        _ergebnisRepository.Add(ergebnis);
-        return RedirectToAction("Index", "Turnierplan");
+            _ergebnisRepository.Add(ergebnis);
+            return RedirectToAction("Index", "Turnierplan");
+        }
+        else
+        {
+            ModelState.AddModelError("", "Irgendwas Failed");
+        }
+        
+        return View(ergebnisVm);
     }
 
     public async Task<IActionResult> Edit(int id)
