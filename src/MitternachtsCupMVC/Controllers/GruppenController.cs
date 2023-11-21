@@ -36,6 +36,30 @@ public class GruppenController : Controller
 
         return View(gruppenVm);
     }
+
+    public async Task<IActionResult> AlleGruppen()
+    {
+        var gruppeAteams = await _gruppenRepository.GetGruppeA();
+        var gruppeBteams = await _gruppenRepository.GetGruppeB();
+        var gruppeCteams = await _gruppenRepository.GetGruppeC();
+        var gruppeDteams = await _gruppenRepository.GetGruppeD();
+        var gruppeEteams = await _gruppenRepository.GetGruppeE();
+        var gruppeFteams = await _gruppenRepository.GetGruppeF();
+        var gruppeGteams = await _gruppenRepository.GetGruppeG();
+
+        var alleGruppenVm = new AlleGruppenViewModel
+        {
+            GruppeA = gruppeAteams,
+            GruppeB = gruppeBteams,
+            GruppeC = gruppeCteams,
+            GruppeD = gruppeDteams,
+            GruppeE = gruppeEteams,
+            GruppeF = gruppeFteams,
+            GruppeG = gruppeGteams
+        };
+
+        return View(alleGruppenVm);
+    }
     public async Task<IActionResult> GruppeA()
     {
         var gruppeAteams = await _gruppenRepository.GetGruppeA();
