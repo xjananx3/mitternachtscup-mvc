@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MitternachtsCupMVC.Data;
 using MitternachtsCupMVC.Interfaces;
 
 namespace MitternachtsCupMVC.Controllers;
@@ -22,10 +23,10 @@ public class KoPhaseController : Controller
 
         var kommendeHalbfinals = await _koPhaseRepository.GetKommendeHalbfinals();
         var vergangeneHalbfinals = await _koPhaseRepository.GetVergangeneHalbfinals();
-
-        var spielUmPlatz3 = await _koPhaseRepository.GetSpielUmPlatz3();
-        var finale = await _koPhaseRepository.GetFinale();
-
+        
+        var spielUmPlatz3 = await _koPhaseRepository.GetSpielUmPlatz3() ?? new KoSpiel();
+        var finale = await _koPhaseRepository.GetFinale() ?? new KoSpiel(); 
+        
         var koPhaseVm = new IndexKoPhaseViewModel()
         {
             KommendeAchtelfinals = kommendeAchtelfinals,
@@ -73,6 +74,7 @@ public class KoPhaseController : Controller
     {
         var kommendeHalbfinals = await _koPhaseRepository.GetKommendeHalbfinals();
         var vergangeneHalbfinals = await _koPhaseRepository.GetVergangeneHalbfinals();
+        
 
         var koPhaseVm = new KoPhaseViewModel
         {
@@ -87,33 +89,45 @@ public class KoPhaseController : Controller
     {
         var spielUmPlatz3 = await _koPhaseRepository.GetSpielUmPlatz3();
 
-        var finalSpielVm = new FinalSpielViewModel()
+        if (spielUmPlatz3 != null)
         {
-            Platte = spielUmPlatz3.Platte,
-            SpielName = spielUmPlatz3.SpielName,
-            StartZeit = spielUmPlatz3.StartZeit,
-            TeamAName = spielUmPlatz3.TeamAName,
-            TeamBName = spielUmPlatz3.TeamBName,
-            Ergebnis = spielUmPlatz3.Ergebnis,
-            GewinnerName = spielUmPlatz3.GewinnerName
-        };
-        return View(finalSpielVm);
+            var finalSpielVm = new FinalSpielViewModel()
+            {
+                Platte = spielUmPlatz3.Platte,
+                SpielName = spielUmPlatz3.SpielName,
+                StartZeit = spielUmPlatz3.StartZeit,
+                TeamAName = spielUmPlatz3.TeamAName,
+                TeamBName = spielUmPlatz3.TeamBName,
+                Ergebnis = spielUmPlatz3.Ergebnis,
+                GewinnerName = spielUmPlatz3.GewinnerName
+            };
+            
+            return View(finalSpielVm);
+        }
+
+        return View("NichtVerfuegbar");
     }
 
     public async Task<IActionResult> Finale()
     {
         var finale = await _koPhaseRepository.GetFinale();
-
-        var finalSpielVm = new FinalSpielViewModel()
+        
+        if(finale != null)
         {
-            Platte = finale.Platte,
-            SpielName = finale.SpielName,
-            StartZeit = finale.StartZeit,
-            TeamAName = finale.TeamAName,
-            TeamBName = finale.TeamBName,
-            Ergebnis = finale.Ergebnis,
-            GewinnerName = finale.GewinnerName
-        };
-        return View(finalSpielVm);
+            var finalSpielVm = new FinalSpielViewModel()
+            {
+                Platte = finale.Platte,
+                SpielName = finale.SpielName,
+                StartZeit = finale.StartZeit,
+                TeamAName = finale.TeamAName,
+                TeamBName = finale.TeamBName,
+                Ergebnis = finale.Ergebnis,
+                GewinnerName = finale.GewinnerName
+            };
+            
+            return View(finalSpielVm);
+        }
+
+        return View("NichtVerfuegbar");
     }
 }
