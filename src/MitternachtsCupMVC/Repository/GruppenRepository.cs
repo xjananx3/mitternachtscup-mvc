@@ -151,14 +151,26 @@ public class GruppenRepository : IGruppenRepository
     private List<GruppenSpiel> GeneriereGruppenSpiele(List<Team> teams)
     {
         List<GruppenSpiel> gruppenSpiele = new List<GruppenSpiel>();
-        
-        for (int i = 0; i < teams.Count - 1 ; i++)
-        {
-            for (int j = i + 1; j < teams.Count(); j++)
+        HashSet<int> bereitsTeamA = new HashSet<int>();
+
+        gruppenSpiele = teams.SelectMany((team, index) =>
+            teams.Skip(index + 1).Select(otherTeam =>
             {
-                gruppenSpiele.Add(new GruppenSpiel() { TeamA = teams[i], TeamB = teams[j] });
-            }
-        }
+                if (bereitsTeamA.Contains(team.Id))
+                {
+                    return new GruppenSpiel() { TeamA = otherTeam, TeamB = team };
+                }
+                else if (bereitsTeamA.Contains(otherTeam.Id))
+                {
+                    return new GruppenSpiel() { TeamA = team, TeamB = otherTeam };
+                }
+                else
+                {
+                    bereitsTeamA.Add(team.Id);
+                    return new GruppenSpiel() { TeamA = team, TeamB = otherTeam };
+                }
+            })
+        ).ToList();
 
         return gruppenSpiele;
     }
