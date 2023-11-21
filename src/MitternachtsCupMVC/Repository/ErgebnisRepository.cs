@@ -21,15 +21,6 @@ public class ErgebnisRepository : IErgebnisRepository
             .ToListAsync();
     }
 
-    public async Task<string> GetTeamNameById(int id)
-    {
-        var team = await _context.Teams.FirstOrDefaultAsync(s => s.Id == id);
-
-        var spielname = team.Name;
-
-        return spielname;
-    }
-
     public async Task<Ergebnis> GetByIdAsync(int id)
     {
         return await _context.Ergebnisse
