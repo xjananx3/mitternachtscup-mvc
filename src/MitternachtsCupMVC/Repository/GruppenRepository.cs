@@ -97,7 +97,7 @@ public class GruppenRepository : IGruppenRepository
             .Where(t => t.Name == "Geschwister Bauer"
                         || t.Name == "Team Dobex"
                         || t.Name == "Jungspritzer"
-                        || t.Name == "Gruschtle").ToListAsync();
+                        || t.Name == "Bohnenklopfer 3").ToListAsync();
     }
     
     public async Task<ICollection<GruppenSpiel>> ErstelleSpieleGruppeE()
@@ -134,8 +134,8 @@ public class GruppenRepository : IGruppenRepository
         return await _context.Teams
             .Where(t => t.Name == "Moorknechte Sasbachried"
                         || t.Name == "Bohnenklopferinas"
-                        || t.Name == "Kräuter Seitling"
-                        || t.Name == "Freies Team 1").ToListAsync();
+                        || t.Name == "Gruschtle"
+                        || t.Name == "Schmetterlinge").ToListAsync();
     }
     
     public async Task<ICollection<GruppenSpiel>> ErstelleSpieleGruppeG()
