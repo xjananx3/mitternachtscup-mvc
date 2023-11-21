@@ -49,6 +49,7 @@ public class SpielController : Controller
         
         var createSpielViewModel = new CreateSpielViewModel
         {
+            Name = "Gruppe X 1. Spiel",
             TeamAId = teamAId,
             TeamBId = teamBId,
             StartZeit = new DateTime(2023, 11, 25, 17, 0, 0),
@@ -60,7 +61,8 @@ public class SpielController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(CreateSpielViewModel spielVm)
     {
-        
+        if (ModelState.IsValid)
+        {
             var spiel = new Spiel
             {
                 Name = spielVm.Name,
@@ -74,6 +76,13 @@ public class SpielController : Controller
             };
             _spielRepository.Add(spiel);
             return RedirectToAction("Index");
+        }
+        else
+        {
+            ModelState.AddModelError("", "Irgendwas Failed");
+        }
+        
+        return View(spielVm);
             
     }
 
